@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js';
 import { UniswapV2Router02 } from '../constants/contracts';
 import { ESD, UNI, USDC } from '../constants/tokens';
 
-const dollarAbi = require('../constants/abi/Dollar.json');
+const as2networkAbi = require('../constants/abi/Dollar.json');
 const daoAbi = require('../constants/abi/Implementation.json');
 const poolAbi = require('../constants/abi/Pool.json');
 const uniswapRouterAbi = require('../constants/abi/UniswapV2Router02.json');
@@ -25,12 +25,12 @@ if (window.ethereum !== undefined) {
  */
 export const getTokenBalance = async (token, account) => {
   if (account === '') return '0';
-  const tokenContract = new web3.eth.Contract(dollarAbi, token);
+  const tokenContract = new web3.eth.Contract(as2networkAbi, token);
   return tokenContract.methods.balanceOf(account).call();
 };
 
 export const getTokenTotalSupply = async (token) => {
-  const tokenContract = new web3.eth.Contract(dollarAbi, token);
+  const tokenContract = new web3.eth.Contract(as2networkAbi, token);
   return tokenContract.methods.totalSupply().call();
 };
 
@@ -42,7 +42,7 @@ export const getTokenTotalSupply = async (token) => {
  * @return {Promise<string>}
  */
 export const getTokenAllowance = async (token, account, spender) => {
-  const tokenContract = new web3.eth.Contract(dollarAbi, token);
+  const tokenContract = new web3.eth.Contract(as2networkAbi, token);
   return tokenContract.methods.allowance(account, spender).call();
 };
 
