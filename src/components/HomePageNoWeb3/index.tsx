@@ -11,7 +11,7 @@ function HomePageNoWeb3() {
     <>
       <div style={{ padding: '1%', display: 'flex', alignItems: 'center' }}>
         <div style={{ marginLeft: '2%'  }}>
-          <Header primary="døllar dashboard." />
+          <Header primary="EDI dashboard." />
         </div>
       </div>
       <div style={{ padding: '1%', display: 'flex', alignItems: 'center' }}>

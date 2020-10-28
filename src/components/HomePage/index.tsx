@@ -11,14 +11,14 @@ function HomePage() {
     <>
       <div style={{ padding: '1%', display: 'flex', alignItems: 'center' }}>
         <div style={{ marginLeft: '2%'  }}>
-          <Header primary="døllar dashboard." />
+          <Header primary="EDI dashboard." />
         </div>
       </div>
       <div style={{ padding: '1%', display: 'flex', alignItems: 'center' }}>
         <div style={{ width: '30%', marginRight: '3%', marginLeft: '2%'  }}>
           <MainButton
             title="Wallet"
-            description="Manage døllar balance and bonding."
+            description="Manage EDI balance and bonding."
             icon={<i className="fas fa-wallet"/>}
             onClick={() => {
               history.push('/wallet/');
@@ -52,7 +52,7 @@ function HomePage() {
         <div style={{ width: '30%', marginRight: '3%', marginLeft: '2%'  }}>
           <MainButton
             title="Trade"
-            description="Trade døllar tokens."
+            description="Trade EDI tokens."
             icon={<i className="fas fa-exchange-alt"/>}
             onClick={() => {
               history.push('/trade/');
