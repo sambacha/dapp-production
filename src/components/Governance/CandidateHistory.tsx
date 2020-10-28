@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import { useHistory } from 'react-router-dom';
-import {
-  Button, IconRight, DataView
-} from '@aragon/ui';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Button, IconRight, DataView } from "@aragon/ui";
 
 import {
   getAllProposals,
@@ -10,11 +8,13 @@ import {
   getEpoch,
   getIsInitialized,
   getRejectFor,
-  getTokenTotalSupply, getTotalBonded, getTotalBondedAt
-} from '../../utils/infura';
-import {ESDS} from "../../constants/tokens";
-import {AddressBlock} from "../common";
-import {proposalStatus} from "../../utils/gov";
+  getTokenTotalSupply,
+  getTotalBonded,
+  getTotalBondedAt,
+} from "../../utils/infura";
+import { ESDS } from "../../constants/tokens";
+import { AddressBlock } from "../common";
+import { proposalStatus } from "../../utils/gov";
 import BigNumber from "bignumber.js";
 
 type CandidateHistoryProps = {
@@ -22,29 +22,40 @@ type CandidateHistoryProps = {
 };
 
 type Proposal = {
-  index: number
-  candidate: string,
-  account: string,
-  start: number,
-  period: number,
-  status: string
-}
+  index: number;
+  candidate: string;
+  account: string;
+  start: number;
+  period: number;
+  status: string;
+};
 
-async function formatProposals(epoch: number, proposals: any[]): Promise<Proposal[]> {
+async function formatProposals(
+  epoch: number,
+  proposals: any[]
+): Promise<Proposal[]> {
   const currentTotalStake = await getTokenTotalSupply(ESDS.addr);
-  const initializeds = await Promise.all(proposals.map((p) => getIsInitialized(ESDS.addr, p.candidate)));
-  const approves = await Promise.all(proposals.map((p) => getApproveFor(ESDS.addr, p.candidate)));
-  const rejecteds = await Promise.all(proposals.map((p) => getRejectFor(ESDS.addr, p.candidate)));
-  const supplyAts = await Promise.all(proposals.map(async (p) => {
-    const at = (p.start + p.period - 1);
-    if (epoch > at) {
-      return await getTotalBondedAt(ESDS.addr, at);
-    }
-    return currentTotalStake;
-  }));
+  const initializeds = await Promise.all(
+    proposals.map((p) => getIsInitialized(ESDS.addr, p.candidate))
+  );
+  const approves = await Promise.all(
+    proposals.map((p) => getApproveFor(ESDS.addr, p.candidate))
+  );
+  const rejecteds = await Promise.all(
+    proposals.map((p) => getRejectFor(ESDS.addr, p.candidate))
+  );
+  const supplyAts = await Promise.all(
+    proposals.map(async (p) => {
+      const at = p.start + p.period - 1;
+      if (epoch > at) {
+        return await getTotalBondedAt(ESDS.addr, at);
+      }
+      return currentTotalStake;
+    })
+  );
 
   for (let i = 0; i < proposals.length; i++) {
-    proposals[i].index = (proposals.length - i);
+    proposals[i].index = proposals.length - i;
     proposals[i].start = parseInt(proposals[i].start);
     proposals[i].period = parseInt(proposals[i].period);
     proposals[i].status = proposalStatus(
@@ -57,14 +68,14 @@ async function formatProposals(epoch: number, proposals: any[]): Promise<Proposa
       new BigNumber(supplyAts[i])
     );
   }
-  return proposals
+  return proposals;
 }
 
-function CandidateHistory({user}: CandidateHistoryProps) {
+function CandidateHistory({ user }: CandidateHistoryProps) {
   const history = useHistory();
   const [proposals, setProposals] = useState<Proposal[]>([]);
-  const [page, setPage] = useState(0)
-  const [initialized, setInitialized] = useState(false)
+  const [page, setPage] = useState(0);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     let isCancelled = false;
@@ -76,7 +87,10 @@ function CandidateHistory({user}: CandidateHistoryProps) {
       ]);
 
       if (!isCancelled) {
-        const formattedProposals = await formatProposals(parseInt(epochStr), allProposals);
+        const formattedProposals = await formatProposals(
+          parseInt(epochStr),
+          allProposals
+        );
         setProposals(formattedProposals);
         setInitialized(true);
       }
@@ -93,8 +107,16 @@ function CandidateHistory({user}: CandidateHistoryProps) {
 
   return (
     <DataView
-      fields={['Proposal', 'Candidate', 'Proposed', 'Complete', 'Proposer', 'Status', '']}
-      status={ initialized ? 'default' : 'loading' }
+      fields={[
+        "Proposal",
+        "Candidate",
+        "Proposed",
+        "Complete",
+        "Proposer",
+        "Status",
+        "",
+      ]}
+      status={initialized ? "default" : "loading"}
       // @ts-ignore
       entries={proposals}
       entriesPerPage={10}
@@ -114,7 +136,7 @@ function CandidateHistory({user}: CandidateHistoryProps) {
           onClick={() => {
             history.push(`/governance/candidate/${proposal.candidate}`);
           }}
-        />
+        />,
       ]}
     />
   );

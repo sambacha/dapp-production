@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Header } from '@aragon/ui';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Header } from "@aragon/ui";
+import { useParams } from "react-router-dom";
 
 import {
   getCouponPremium,
   getTokenAllowance,
   getTokenBalance,
   getTokenTotalSupply,
-  getTotalDebt, getTotalRedeemable,
-} from '../../utils/infura';
-import {ESD, ESDS} from "../../constants/tokens";
+  getTotalDebt,
+  getTotalRedeemable,
+} from "../../utils/infura";
+import { ESD, ESDS } from "../../constants/tokens";
 import CouponMarketHeader from "./Header";
-import {toTokenUnitsBN} from "../../utils/number";
+import { toTokenUnitsBN } from "../../utils/number";
 import BigNumber from "bignumber.js";
 import PurchaseCoupons from "./PurchaseCoupons";
 import PurchaseHistory from "./PurchaseHistory";
 import IconHeader from "../common/IconHeader";
-import {getPreference, storePreference} from "../../utils/storage";
-import {CheckBox} from "../common";
+import { getPreference, storePreference } from "../../utils/storage";
+import { CheckBox } from "../common";
 
 const ONE_COUPON = new BigNumber(10).pow(18);
 
-function CouponMarket({ user }: {user: string}) {
+function CouponMarket({ user }: { user: string }) {
   const { override } = useParams();
   if (override) {
     user = override;
   }
 
-  const storedHideRedeemed = getPreference('hideRedeemedCoupons', '0');
+  const storedHideRedeemed = getPreference("hideRedeemedCoupons", "0");
 
   const [balance, setBalance] = useState(new BigNumber(0));
   const [allowance, setAllowance] = useState(new BigNumber(0));
@@ -35,10 +36,10 @@ function CouponMarket({ user }: {user: string}) {
   const [redeemable, setRedeemable] = useState(new BigNumber(0));
   const [couponPremium, setCouponPremium] = useState(new BigNumber(0));
   const [debt, setDebt] = useState(new BigNumber(0));
-  const [hideRedeemed, setHideRedeemed] = useState(storedHideRedeemed === '1');
+  const [hideRedeemed, setHideRedeemed] = useState(storedHideRedeemed === "1");
 
   useEffect(() => {
-    if (user === '') {
+    if (user === "") {
       setBalance(new BigNumber(0));
       setAllowance(new BigNumber(0));
       return;
@@ -56,7 +57,7 @@ function CouponMarket({ user }: {user: string}) {
       if (!isCancelled) {
         setBalance(new BigNumber(userBalance));
         setAllowance(new BigNumber(allowanceStr));
-        (new BigNumber(allowanceStr));
+        new BigNumber(allowanceStr);
       }
     }
     updateUserInfo();
@@ -89,7 +90,10 @@ function CouponMarket({ user }: {user: string}) {
         setRedeemable(new BigNumber(totalRedeemable));
 
         if (totalDebt.isGreaterThan(new BigNumber(1))) {
-          const couponPremiumStr = await getCouponPremium(ESDS.addr, ONE_COUPON)
+          const couponPremiumStr = await getCouponPremium(
+            ESDS.addr,
+            ONE_COUPON
+          );
           setCouponPremium(toTokenUnitsBN(couponPremiumStr, ESD.decimals));
         } else {
           setCouponPremium(new BigNumber(0));
@@ -108,13 +112,12 @@ function CouponMarket({ user }: {user: string}) {
 
   return (
     <>
-      <IconHeader icon={<i className="fas fa-ticket-alt"/>} text="Coupon Market"/>
-
-      <CouponMarketHeader
-        debt={debt}
-        supply={supply}
-        premium={couponPremium}
+      <IconHeader
+        icon={<i className="fas fa-ticket-alt" />}
+        text="Coupon Market"
       />
+
+      <CouponMarketHeader debt={debt} supply={supply} premium={couponPremium} />
 
       <Header primary="Purchase" />
 
@@ -125,13 +128,13 @@ function CouponMarket({ user }: {user: string}) {
         debt={debt}
       />
 
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: "flex" }}>
         <Header primary="Coupons" />
-        <div style={{ marginLeft: 'auto', alignSelf: 'flex-end' }}>
+        <div style={{ marginLeft: "auto", alignSelf: "flex-end" }}>
           <CheckBox
             text="Hide Redeemed"
             onCheck={(checked) => {
-              storePreference('hideRedeemedCoupons', checked ? '1' : '0');
+              storePreference("hideRedeemedCoupons", checked ? "1" : "0");
               setHideRedeemed(checked);
             }}
             checked={hideRedeemed}

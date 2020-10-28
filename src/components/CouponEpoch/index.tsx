@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Header } from '@aragon/ui';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Header } from "@aragon/ui";
+import { useParams } from "react-router-dom";
 
 import {
   getBalanceOfCoupons,
   getOutstandingCoupons,
   getTotalRedeemable,
-} from '../../utils/infura';
-import {ESD, ESDS} from "../../constants/tokens";
+} from "../../utils/infura";
+import { ESD, ESDS } from "../../constants/tokens";
 import CouponMarketHeader from "./Header";
-import {toTokenUnitsBN} from "../../utils/number";
+import { toTokenUnitsBN } from "../../utils/number";
 import BigNumber from "bignumber.js";
 import RedeemCoupons from "./RedeemCoupons";
 import IconHeader from "../common/IconHeader";
 
-function CouponEpoch({ user }: {user: string}) {
+function CouponEpoch({ user }: { user: string }) {
   const { epoch } = useParams();
 
   const [redeemable, setRedeemable] = useState(new BigNumber(0));
-  const [outstandingCouponForEpoch, setOutstandingCouponForEpoch] = useState(new BigNumber(0));
+  const [outstandingCouponForEpoch, setOutstandingCouponForEpoch] = useState(
+    new BigNumber(0)
+  );
   const [userCouponBalance, setUserCouponBalance] = useState(new BigNumber(0));
 
   useEffect(() => {
-    if (user === '') {
+    if (user === "") {
       setUserCouponBalance(new BigNumber(0));
       return;
     }
@@ -30,7 +32,7 @@ function CouponEpoch({ user }: {user: string}) {
 
     async function updateUserInfo() {
       const [balanceStr] = await Promise.all([
-        getBalanceOfCoupons(ESDS.addr, user, epoch)
+        getBalanceOfCoupons(ESDS.addr, user, epoch),
       ]);
 
       const couponBalance = toTokenUnitsBN(balanceStr, ESD.decimals);
@@ -78,7 +80,10 @@ function CouponEpoch({ user }: {user: string}) {
 
   return (
     <>
-      <IconHeader icon={<i className="fas fa-ticket-alt"/>} text={`Coupons for epoch ${epoch}`}/>
+      <IconHeader
+        icon={<i className="fas fa-ticket-alt" />}
+        text={`Coupons for epoch ${epoch}`}
+      />
 
       <CouponMarketHeader
         redeemable={redeemable}

@@ -1,15 +1,11 @@
-import React, { ReactChild } from 'react';
+import React, { ReactChild } from "react";
 
 type commentProps = {
-  text: string | ReactChild
-}
+  text: string | ReactChild;
+};
 
 function Comment({ text }: commentProps) {
-  return (
-    <div style={{ padding: 5, opacity: 0.5 }}>
-      {text}
-    </div>
-  );
+  return <div style={{ padding: 5, opacity: 0.5 }}>{text}</div>;
 }
 
 export default Comment;

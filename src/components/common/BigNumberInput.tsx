@@ -1,18 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import BigNumber from 'bignumber.js';
-import {
-  TextInput,
-} from '@aragon/ui';
+import BigNumber from "bignumber.js";
+import { TextInput } from "@aragon/ui";
 
 type BigNumberInputProps = {
-  value: BigNumber,
-  setter: (value: BigNumber) => void
-  adornment?: any,
-  disabled?: boolean
-}
+  value: BigNumber;
+  setter: (value: BigNumber) => void;
+  adornment?: any;
+  disabled?: boolean;
+};
 
-function BigNumberInput({ value, setter, adornment, disabled=false }: BigNumberInputProps) {
+function BigNumberInput({
+  value,
+  setter,
+  adornment,
+  disabled = false,
+}: BigNumberInputProps) {
   return (
     <>
       <TextInput
@@ -20,7 +23,7 @@ function BigNumberInput({ value, setter, adornment, disabled=false }: BigNumberI
         adornmentPosition="end"
         adornment={adornment}
         wide
-        value={value.isNegative() ? '' : value.toFixed()}
+        value={value.isNegative() ? "" : value.toFixed()}
         onChange={(event) => {
           if (event.target.value) {
             setter(new BigNumber(event.target.value));
@@ -30,7 +33,7 @@ function BigNumberInput({ value, setter, adornment, disabled=false }: BigNumberI
         }}
         onBlur={() => {
           if (value.isNegative()) {
-            setter(new BigNumber(0))
+            setter(new BigNumber(0));
           }
         }}
         disabled={disabled}

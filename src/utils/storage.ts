@@ -3,7 +3,7 @@
  * @param {string} key
  * @param {string} defaultValue
  */
-export function getPreference(key:string, defaultValue:string): string {
+export function getPreference(key: string, defaultValue: string): string {
   return localStorage.getItem(key) || defaultValue;
 }
 
@@ -12,6 +12,6 @@ export function getPreference(key:string, defaultValue:string): string {
  * @param {string} key
  * @param {string} value
  */
-export function storePreference(key:string, value:string):void {
+export function storePreference(key: string, value: string): void {
   localStorage.setItem(key, value);
 }

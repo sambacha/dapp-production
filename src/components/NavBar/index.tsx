@@ -1,33 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
-import { Bar, BackButton, LinkBase } from '@aragon/ui';
-import ConnectButton from './ConnectButton';
-import ChangeModeButton from './SwitchTheme';
+import { Bar, BackButton, LinkBase } from "@aragon/ui";
+import ConnectButton from "./ConnectButton";
+import ChangeModeButton from "./SwitchTheme";
 
 type NavbarProps = {
-  theme:string,
-  updateTheme: Function,
-  hasWeb3: boolean,
-  user: string,
-  setUser: Function
-}
+  theme: string;
+  updateTheme: Function;
+  hasWeb3: boolean;
+  user: string;
+  setUser: Function;
+};
 
-function NavBar({
-  theme, updateTheme, hasWeb3, user, setUser,
-}:NavbarProps) {
+function NavBar({ theme, updateTheme, hasWeb3, user, setUser }: NavbarProps) {
   const history = useHistory();
   const [isHome, updateIsHome] = useState(true);
   const [page, setPage] = useState("");
 
   useEffect(() => {
-    const home = history.location.pathname === '/';
+    const home = history.location.pathname === "/";
     updateIsHome(home);
     return history.listen((location) => {
-      setPage(location.pathname)
-      const home = history.location.pathname === '/';
+      setPage(location.pathname);
+      const home = history.location.pathname === "/";
       updateIsHome(home);
-    })
+    });
   }, [hasWeb3, user, history]);
 
   return (
@@ -37,7 +35,7 @@ function NavBar({
           <></>
         ) : (
           <>
-            <div style={{ height: '100%' }}>
+            <div style={{ height: "100%" }}>
               <BackButton
                 onClick={() => {
                   history.goBack();
@@ -47,70 +45,77 @@ function NavBar({
             <LinkButton
               title="Home"
               onClick={() => {
-                history.push('/');
+                history.push("/");
               }}
-              isSelected={page === '/'}
+              isSelected={page === "/"}
             />
             <LinkButton
               title="Wallet"
               onClick={() => {
-                history.push('/wallet/');
+                history.push("/wallet/");
               }}
-              isSelected={page.includes('/wallet')}
+              isSelected={page.includes("/wallet")}
             />
             <LinkButton
               title="Epoch"
               onClick={() => {
-                history.push('/epoch/');
+                history.push("/epoch/");
               }}
-              isSelected={page.includes('/epoch')}
+              isSelected={page.includes("/epoch")}
             />
             <LinkButton
               title="Trade"
               onClick={() => {
-                history.push('/trade/');
+                history.push("/trade/");
               }}
-              isSelected={page.includes('/trade')}
+              isSelected={page.includes("/trade")}
             />
             <LinkButton
               title="Rewards"
               onClick={() => {
-                history.push('/pool/');
+                history.push("/pool/");
               }}
-              isSelected={page.includes('/pool')}
+              isSelected={page.includes("/pool")}
             />
             <LinkButton
               title="Governance"
               onClick={() => {
-                history.push('/governance/');
+                history.push("/governance/");
               }}
-              isSelected={page.includes('/governance')}
+              isSelected={page.includes("/governance")}
             />
           </>
         )
       }
-      secondary={(
+      secondary={
         <>
           <ConnectButton hasWeb3={hasWeb3} user={user} setUser={setUser} />
-          <ChangeModeButton hasWeb3={hasWeb3} theme={theme} updateTheme={updateTheme} />
+          <ChangeModeButton
+            hasWeb3={hasWeb3}
+            theme={theme}
+            updateTheme={updateTheme}
+          />
         </>
-      )}
+      }
     />
   );
 }
 
-
 type linkButtonProps = {
-  title:string,
-  onClick: Function,
-  isSelected?:boolean
-}
+  title: string;
+  onClick: Function;
+  isSelected?: boolean;
+};
 
-function LinkButton({ title, onClick, isSelected = false }:linkButtonProps) {
+function LinkButton({ title, onClick, isSelected = false }: linkButtonProps) {
   return (
     <div style={{ paddingLeft: 40 }}>
       <LinkBase onClick={onClick}>
-        <div style={{ padding: '1%', opacity: isSelected ? 1 : 0.5, fontSize: 17 }}>{title}</div>
+        <div
+          style={{ padding: "1%", opacity: isSelected ? 1 : 0.5, fontSize: 17 }}
+        >
+          {title}
+        </div>
       </LinkBase>
     </div>
   );

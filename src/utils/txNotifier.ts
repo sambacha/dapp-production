@@ -1,3 +1,3 @@
 export const notify = {
-  hash: (v) => console.log(v)
-}
+  hash: (v) => console.log(v),
+};

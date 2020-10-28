@@ -1,10 +1,10 @@
-import React from 'react';
-import { IdentityBadge } from '@aragon/ui';
+import React from "react";
+import { IdentityBadge } from "@aragon/ui";
 
 type AddressBlockProps = {
-  label:string,
-  address: string
-}
+  label: string;
+  address: string;
+};
 
 function AddressBlock({ label, address }: AddressBlockProps) {
   return (

@@ -1,9 +1,17 @@
-import React from 'react';
-import BigNumber from 'bignumber.js';
+import React from "react";
+import BigNumber from "bignumber.js";
 
 function PriceSection({
-  label, amt, symbol = '', forceDisplay = false,
-}:{label:string, amt: string|number|BigNumber, symbol?:string, forceDisplay?:boolean }) {
+  label,
+  amt,
+  symbol = "",
+  forceDisplay = false,
+}: {
+  label: string;
+  amt: string | number | BigNumber;
+  symbol?: string;
+  forceDisplay?: boolean;
+}) {
   const amtBN = new BigNumber(amt);
   if (amtBN.gt(new BigNumber(0)) || forceDisplay) {
     return (
@@ -16,6 +24,5 @@ function PriceSection({
   }
   return <div style={{ padding: 3, opacity: 0.5 }} />;
 }
-
 
 export default PriceSection;

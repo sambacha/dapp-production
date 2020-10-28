@@ -1,25 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Header, IdentityBadge } from '@aragon/ui';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Header, IdentityBadge } from "@aragon/ui";
+import { useParams } from "react-router-dom";
 
 import {
-  getApproveFor, getEpoch, getIsInitialized, getPeriodFor,
+  getApproveFor,
+  getEpoch,
+  getIsInitialized,
+  getPeriodFor,
   getRecordedVote,
-  getRejectFor, getStartFor, getStatusOf,
+  getRejectFor,
+  getStartFor,
+  getStatusOf,
   getTokenBalance,
-  getTokenTotalSupply, getTotalBondedAt
-} from '../../utils/infura';
-import {ESDS} from "../../constants/tokens";
-import {toTokenUnitsBN} from "../../utils/number";
+  getTokenTotalSupply,
+  getTotalBondedAt,
+} from "../../utils/infura";
+import { ESDS } from "../../constants/tokens";
+import { toTokenUnitsBN } from "../../utils/number";
 import BigNumber from "bignumber.js";
 import Vote from "./Vote";
 import VoteHeader from "./VoteHeader";
 import CommitHeader from "./CommitHeader";
 import Commit from "./Commit";
 import IconHeader from "../common/IconHeader";
-import {proposalStatus} from "../../utils/gov";
+import { proposalStatus } from "../../utils/gov";
 
-function Candidate({ user }: {user: string}) {
+function Candidate({ user }: { user: string }) {
   const { candidate } = useParams();
 
   const [approveFor, setApproveFor] = useState(new BigNumber(0));
@@ -34,7 +40,7 @@ function Candidate({ user }: {user: string}) {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    if (user === '') {
+    if (user === "") {
       setVote(0);
       setStatus(0);
       setUserStake(new BigNumber(0));
@@ -43,9 +49,7 @@ function Candidate({ user }: {user: string}) {
     let isCancelled = false;
 
     async function updateUserInfo() {
-      const [
-        voteStr, statusStr, userStakeStr,
-      ] = await Promise.all([
+      const [voteStr, statusStr, userStakeStr] = await Promise.all([
         getRecordedVote(ESDS.addr, user, candidate),
         getStatusOf(ESDS.addr, user),
         getTokenBalance(ESDS.addr, user),
@@ -72,8 +76,13 @@ function Candidate({ user }: {user: string}) {
 
     async function updateUserInfo() {
       let [
-        approveForStr, rejectForStr, totalStakeStr,
-        epochStr, startForStr, periodForStr, isInitialized
+        approveForStr,
+        rejectForStr,
+        totalStakeStr,
+        epochStr,
+        startForStr,
+        periodForStr,
+        isInitialized,
       ] = await Promise.all([
         getApproveFor(ESDS.addr, candidate),
         getRejectFor(ESDS.addr, candidate),
@@ -88,7 +97,7 @@ function Candidate({ user }: {user: string}) {
       const startN = parseInt(startForStr, 10);
       const periodN = parseInt(periodForStr, 10);
 
-      const endsAfter = (startN + periodN - 1);
+      const endsAfter = startN + periodN - 1;
       if (epochN > endsAfter) {
         totalStakeStr = await getTotalBondedAt(ESDS.addr, endsAfter);
       }
@@ -115,7 +124,7 @@ function Candidate({ user }: {user: string}) {
 
   return (
     <>
-      <IconHeader icon={<i className="fas fa-poll"/>} text="Candidate"/>
+      <IconHeader icon={<i className="fas fa-poll" />} text="Candidate" />
       <IdentityBadge entity={candidate} shorten={false} />
 
       <VoteHeader
@@ -147,7 +156,17 @@ function Candidate({ user }: {user: string}) {
         startEpoch={startEpoch}
         periodEpoch={periodEpoch}
         initialized={initialized}
-        approved={proposalStatus(epoch, startEpoch, periodEpoch, false, approveFor, rejectFor, totalStake) === "Approved"}
+        approved={
+          proposalStatus(
+            epoch,
+            startEpoch,
+            periodEpoch,
+            false,
+            approveFor,
+            rejectFor,
+            totalStake
+          ) === "Approved"
+        }
       />
     </>
   );

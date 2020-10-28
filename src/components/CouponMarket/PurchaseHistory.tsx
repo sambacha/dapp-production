@@ -1,32 +1,32 @@
-import React, {useEffect, useState} from 'react';
-import { useHistory } from 'react-router-dom';
-import {
-  DataView, Button, IconRight, IconPlus
-} from '@aragon/ui';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { DataView, Button, IconRight, IconPlus } from "@aragon/ui";
 
-import {getBatchBalanceOfCoupons, getCouponEpochs} from '../../utils/infura';
-import {ESD, ESDS} from "../../constants/tokens";
-import {formatBN, toBaseUnitBN, toTokenUnitsBN} from "../../utils/number";
+import { getBatchBalanceOfCoupons, getCouponEpochs } from "../../utils/infura";
+import { ESD, ESDS } from "../../constants/tokens";
+import { formatBN, toBaseUnitBN, toTokenUnitsBN } from "../../utils/number";
 import BigNumber from "bignumber.js";
-import {redeemCoupons} from "../../utils/web3";
+import { redeemCoupons } from "../../utils/web3";
 
 type PurchaseHistoryProps = {
-  user: string,
-  hideRedeemed: boolean,
-  totalRedeemable: BigNumber
+  user: string;
+  hideRedeemed: boolean;
+  totalRedeemable: BigNumber;
 };
 
 function PurchaseHistory({
-  user, hideRedeemed, totalRedeemable
+  user,
+  hideRedeemed,
+  totalRedeemable,
 }: PurchaseHistoryProps) {
   const history = useHistory();
   const [epochs, setEpochs] = useState([]);
-  const [page, setPage] = useState(0)
-  const [initialized, setInitialized] = useState(false)
+  const [page, setPage] = useState(0);
+  const [initialized, setInitialized] = useState(false);
 
   //Update User balances
   useEffect(() => {
-    if (user === '') return;
+    if (user === "") return;
     let isCancelled = false;
 
     async function updateUserInfo() {
@@ -34,13 +34,13 @@ function PurchaseHistory({
       const balanceOfCoupons = await getBatchBalanceOfCoupons(
         ESDS.addr,
         user,
-        epochsFromEvents.map(e => parseInt(e.epoch)));
+        epochsFromEvents.map((e) => parseInt(e.epoch))
+      );
 
       const couponEpochs = epochsFromEvents.map((epoch, i) => {
         epoch.balance = new BigNumber(balanceOfCoupons[i]);
         return epoch;
       });
-
 
       if (!isCancelled) {
         // @ts-ignore
@@ -60,10 +60,14 @@ function PurchaseHistory({
 
   return (
     <DataView
-      fields={['Epoch', 'Purchased', 'Balance', '']}
-      status={ initialized ? 'default' : 'loading' }
+      fields={["Epoch", "Purchased", "Balance", ""]}
+      status={initialized ? "default" : "loading"}
       // @ts-ignore
-      entries={hideRedeemed ? epochs.filter((epoch) => !epoch.balance.isZero()) : epochs}
+      entries={
+        hideRedeemed
+          ? epochs.filter((epoch) => !epoch.balance.isZero())
+          : epochs
+      }
       entriesPerPage={10}
       page={page}
       onPageChange={setPage}
@@ -75,12 +79,17 @@ function PurchaseHistory({
           <Button
             icon={<IconPlus />}
             label="Redeem All"
-            onClick={() => redeemCoupons(
-              ESDS.addr,
-              epoch.epoch,
-              toBaseUnitBN(epoch.balance, ESD.decimals),
-            )}
-            disabled={epoch.balance.isZero() || epoch.balance.isGreaterThan(totalRedeemable)}
+            onClick={() =>
+              redeemCoupons(
+                ESDS.addr,
+                epoch.epoch,
+                toBaseUnitBN(epoch.balance, ESD.decimals)
+              )
+            }
+            disabled={
+              epoch.balance.isZero() ||
+              epoch.balance.isGreaterThan(totalRedeemable)
+            }
           />
           <Button
             icon={<IconRight />}
@@ -89,7 +98,7 @@ function PurchaseHistory({
               history.push(`/coupons/epoch/${epoch.epoch}`);
             }}
           />
-        </>
+        </>,
       ]}
     />
   );

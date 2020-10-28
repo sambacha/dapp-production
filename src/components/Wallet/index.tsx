@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import BigNumber from 'bignumber.js';
+import BigNumber from "bignumber.js";
 import {
   getBalanceBonded,
   getBalanceOfStaged,
-  getStatusOf, getTokenAllowance,
-  getTokenBalance, getTokenTotalSupply,
-} from '../../utils/infura';
-import {ESD, ESDS} from "../../constants/tokens";
-import { toTokenUnitsBN } from '../../utils/number';
+  getStatusOf,
+  getTokenAllowance,
+  getTokenBalance,
+  getTokenTotalSupply,
+} from "../../utils/infura";
+import { ESD, ESDS } from "../../constants/tokens";
+import { toTokenUnitsBN } from "../../utils/number";
 
 import AccountPageHeader from "./Header";
 import WithdrawDeposit from "./WithdrawDeposit";
 import BondUnbond from "./BondUnbond";
 import IconHeader from "../common/IconHeader";
 
-function Wallet({ user }: {user: string}) {
+function Wallet({ user }: { user: string }) {
   const { override } = useParams();
   if (override) {
     user = override;
@@ -32,7 +34,7 @@ function Wallet({ user }: {user: string}) {
 
   //Update User balances
   useEffect(() => {
-    if (user === '') {
+    if (user === "") {
       setUserESDBalance(new BigNumber(0));
       setUserESDAllowance(new BigNumber(0));
       setUserESDSBalance(new BigNumber(0));
@@ -45,7 +47,15 @@ function Wallet({ user }: {user: string}) {
     let isCancelled = false;
 
     async function updateUserInfo() {
-      const [esdBalance, esdAllowance, esdsBalance, esdsSupply, stagedBalance, bondedBalance, status] = await Promise.all([
+      const [
+        esdBalance,
+        esdAllowance,
+        esdsBalance,
+        esdsSupply,
+        stagedBalance,
+        bondedBalance,
+        status,
+      ] = await Promise.all([
         getTokenBalance(ESD.addr, user),
         getTokenAllowance(ESD.addr, user, ESDS.addr),
         getTokenBalance(ESDS.addr, user),
@@ -84,7 +94,7 @@ function Wallet({ user }: {user: string}) {
 
   return (
     <>
-      <IconHeader icon={<i className="fas fa-wallet"/>} text="Wallet"/>
+      <IconHeader icon={<i className="fas fa-wallet" />} text="Wallet" />
 
       <AccountPageHeader
         accountESDBalance={userESDBalance}
