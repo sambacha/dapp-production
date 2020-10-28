@@ -1,5 +1,5 @@
-import React from "react";
-import { IdentityBadge } from "@aragon/ui";
+import React from 'react';
+import { IdentityBadge } from '@aragon/ui';
 
 type AddressBlockProps = {
   label: string;

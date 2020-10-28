@@ -1,4 +1,4 @@
-import { GOVERNANCE_QUORUM } from "../constants/values";
+import { GOVERNANCE_QUORUM } from '../constants/values';
 
 export function proposalStatus(
   epoch,
@@ -10,23 +10,23 @@ export function proposalStatus(
   total
 ): string {
   if (start === 0) {
-    return "N/A";
+    return 'N/A';
   }
   if (epoch < start) {
-    return "Unknown";
+    return 'Unknown';
   }
   if (epoch < start + period) {
-    return "Voting";
+    return 'Voting';
   }
   if (initialized) {
-    return "Committed";
+    return 'Committed';
   }
 
   if (epoch < start + period) {
-    return "Rejected"; // Not ended
+    return 'Rejected'; // Not ended
   }
   if (approve.plus(reject).dividedBy(total).comparedTo(GOVERNANCE_QUORUM) < 0) {
-    return "Rejected"; // Didn't meet quorum
+    return 'Rejected'; // Didn't meet quorum
   }
-  return approve.comparedTo(reject) > 0 ? "Approved" : "Rejected";
+  return approve.comparedTo(reject) > 0 ? 'Approved' : 'Rejected';
 }

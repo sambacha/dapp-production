@@ -1,10 +1,10 @@
-import React from "react";
-import BigNumber from "bignumber.js";
+import React from 'react';
+import BigNumber from 'bignumber.js';
 
 function PriceSection({
   label,
   amt,
-  symbol = "",
+  symbol = '',
   forceDisplay = false,
 }: {
   label: string;

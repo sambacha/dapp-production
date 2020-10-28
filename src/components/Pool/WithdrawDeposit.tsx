@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Box, Button, IconCirclePlus, IconCircleMinus } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { BalanceBlock, MaxButton } from "../common/index";
-import { approve, depositPool, withdrawPool } from "../../utils/web3";
-import { isPos, toBaseUnitBN } from "../../utils/number";
-import { UNI } from "../../constants/tokens";
-import { MAX_UINT256 } from "../../constants/values";
-import BigNumberInput from "../common/BigNumberInput";
+import React, { useState } from 'react';
+import { Box, Button, IconCirclePlus, IconCircleMinus } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { BalanceBlock, MaxButton } from '../common/index';
+import { approve, depositPool, withdrawPool } from '../../utils/web3';
+import { isPos, toBaseUnitBN } from '../../utils/number';
+import { UNI } from '../../constants/tokens';
+import { MAX_UINT256 } from '../../constants/values';
+import BigNumberInput from '../common/BigNumberInput';
 
 type WithdrawDepositProps = {
   poolAddress: string;
@@ -31,19 +31,19 @@ function WithdrawDeposit({
   return (
     <Box heading="Stage">
       {allowance.comparedTo(MAX_UINT256) === 0 ? (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: 'flex' }}>
           {/* total Issued */}
-          <div style={{ width: "30%" }}>
+          <div style={{ width: '30%' }}>
             <BalanceBlock
               asset="Staged"
               balance={stagedBalance}
-              suffix={"UNI-V2"}
+              suffix={'UNI-V2'}
             />
           </div>
           {/* Deposit UNI-V2 into Pool */}
-          <div style={{ width: "32%", paddingTop: "2%" }}>
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "60%" }}>
+          <div style={{ width: '32%', paddingTop: '2%' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '60%' }}>
                 <>
                   <BigNumberInput
                     adornment="UNI-V2"
@@ -58,7 +58,7 @@ function WithdrawDeposit({
                   />
                 </>
               </div>
-              <div style={{ width: "40%" }}>
+              <div style={{ width: '40%' }}>
                 <Button
                   wide
                   icon={<IconCirclePlus />}
@@ -71,17 +71,17 @@ function WithdrawDeposit({
                     );
                   }}
                   disabled={
-                    poolAddress === "" || status === 1 || !isPos(depositAmount)
+                    poolAddress === '' || status === 1 || !isPos(depositAmount)
                   }
                 />
               </div>
             </div>
           </div>
-          <div style={{ width: "6%" }} />
+          <div style={{ width: '6%' }} />
           {/* Withdraw Døllar from DAO */}
-          <div style={{ width: "32%", paddingTop: "2%" }}>
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "60%" }}>
+          <div style={{ width: '32%', paddingTop: '2%' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '60%' }}>
                 <>
                   <BigNumberInput
                     adornment="UNI-V2"
@@ -96,7 +96,7 @@ function WithdrawDeposit({
                   />
                 </>
               </div>
-              <div style={{ width: "40%" }}>
+              <div style={{ width: '40%' }}>
                 <Button
                   wide
                   icon={<IconCircleMinus />}
@@ -109,7 +109,7 @@ function WithdrawDeposit({
                     );
                   }}
                   disabled={
-                    poolAddress === "" || status === 1 || !isPos(withdrawAmount)
+                    poolAddress === '' || status === 1 || !isPos(withdrawAmount)
                   }
                 />
               </div>
@@ -117,18 +117,18 @@ function WithdrawDeposit({
           </div>
         </div>
       ) : (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: 'flex' }}>
           {/* total Issued */}
-          <div style={{ width: "30%" }}>
+          <div style={{ width: '30%' }}>
             <BalanceBlock
               asset="Staged"
               balance={stagedBalance}
-              suffix={"UNI-V2"}
+              suffix={'UNI-V2'}
             />
           </div>
-          <div style={{ width: "40%" }} />
+          <div style={{ width: '40%' }} />
           {/* Approve Pool to spend UNI-V2 */}
-          <div style={{ width: "30%", paddingTop: "2%" }}>
+          <div style={{ width: '30%', paddingTop: '2%' }}>
             <Button
               wide
               icon={<IconCirclePlus />}
@@ -136,7 +136,7 @@ function WithdrawDeposit({
               onClick={() => {
                 approve(UNI.addr, poolAddress);
               }}
-              disabled={poolAddress === "" || user === ""}
+              disabled={poolAddress === '' || user === ''}
             />
           </div>
         </div>

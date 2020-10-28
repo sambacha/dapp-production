@@ -1,4 +1,4 @@
-import React, { ReactChild } from "react";
+import React, { ReactChild } from 'react';
 
 type commentProps = {
   text: string | ReactChild;

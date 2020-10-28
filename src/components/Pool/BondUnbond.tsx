@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Box, Button, IconCirclePlus, IconCircleMinus } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { BalanceBlock, MaxButton } from "../common/index";
-import { bondPool, unbondPool } from "../../utils/web3";
-import { isPos, toBaseUnitBN } from "../../utils/number";
-import { ESDS, UNI } from "../../constants/tokens";
-import BigNumberInput from "../common/BigNumberInput";
+import React, { useState } from 'react';
+import { Box, Button, IconCirclePlus, IconCircleMinus } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { BalanceBlock, MaxButton } from '../common/index';
+import { bondPool, unbondPool } from '../../utils/web3';
+import { isPos, toBaseUnitBN } from '../../utils/number';
+import { ESDS, UNI } from '../../constants/tokens';
+import BigNumberInput from '../common/BigNumberInput';
 
 type BondUnbondProps = {
   poolAddress: string;
@@ -19,15 +19,15 @@ function BondUnbond({ poolAddress, staged, bonded }: BondUnbondProps) {
 
   return (
     <Box heading="Bond">
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         {/* Total bonded */}
-        <div style={{ width: "30%" }}>
-          <BalanceBlock asset="Bonded" balance={bonded} suffix={"UNI-V2"} />
+        <div style={{ width: '30%' }}>
+          <BalanceBlock asset="Bonded" balance={bonded} suffix={'UNI-V2'} />
         </div>
         {/* Bond UNI-V2 within Pool */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
               <>
                 <BigNumberInput
                   adornment="UNI-V2"
@@ -41,7 +41,7 @@ function BondUnbond({ poolAddress, staged, bonded }: BondUnbondProps) {
                 />
               </>
             </div>
-            <div style={{ width: "40%" }}>
+            <div style={{ width: '40%' }}>
               <Button
                 wide
                 icon={<IconCirclePlus />}
@@ -53,16 +53,16 @@ function BondUnbond({ poolAddress, staged, bonded }: BondUnbondProps) {
                     (hash) => setBondAmount(new BigNumber(0))
                   );
                 }}
-                disabled={poolAddress === "" || !isPos(bondAmount)}
+                disabled={poolAddress === '' || !isPos(bondAmount)}
               />
             </div>
           </div>
         </div>
-        <div style={{ width: "6%" }} />
+        <div style={{ width: '6%' }} />
         {/* Unbond UNI-V2 within Pool */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
               <>
                 <BigNumberInput
                   adornment="UNI-V2"
@@ -76,7 +76,7 @@ function BondUnbond({ poolAddress, staged, bonded }: BondUnbondProps) {
                 />
               </>
             </div>
-            <div style={{ width: "40%" }}>
+            <div style={{ width: '40%' }}>
               <Button
                 wide
                 icon={<IconCircleMinus />}
@@ -88,7 +88,7 @@ function BondUnbond({ poolAddress, staged, bonded }: BondUnbondProps) {
                     (hash) => setUnbondAmount(new BigNumber(0))
                   );
                 }}
-                disabled={poolAddress === "" || !isPos(unbondAmount)}
+                disabled={poolAddress === '' || !isPos(unbondAmount)}
               />
             </div>
           </div>

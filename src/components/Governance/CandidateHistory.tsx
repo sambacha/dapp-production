@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Button, IconRight, DataView } from "@aragon/ui";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Button, IconRight, DataView } from '@aragon/ui';
 
 import {
   getAllProposals,
@@ -11,11 +11,11 @@ import {
   getTokenTotalSupply,
   getTotalBonded,
   getTotalBondedAt,
-} from "../../utils/infura";
-import { ESDS } from "../../constants/tokens";
-import { AddressBlock } from "../common";
-import { proposalStatus } from "../../utils/gov";
-import BigNumber from "bignumber.js";
+} from '../../utils/infura';
+import { ESDS } from '../../constants/tokens';
+import { AddressBlock } from '../common';
+import { proposalStatus } from '../../utils/gov';
+import BigNumber from 'bignumber.js';
 
 type CandidateHistoryProps = {
   user: string;
@@ -108,22 +108,22 @@ function CandidateHistory({ user }: CandidateHistoryProps) {
   return (
     <DataView
       fields={[
-        "Proposal",
-        "Candidate",
-        "Proposed",
-        "Complete",
-        "Proposer",
-        "Status",
-        "",
+        'Proposal',
+        'Candidate',
+        'Proposed',
+        'Complete',
+        'Proposer',
+        'Status',
+        '',
       ]}
-      status={initialized ? "default" : "loading"}
+      status={initialized ? 'default' : 'loading'}
       // @ts-ignore
       entries={proposals}
       entriesPerPage={10}
       page={page}
       onPageChange={setPage}
       renderEntry={(proposal) => [
-        "#" + proposal.index,
+        '#' + proposal.index,
         <AddressBlock label="" address={proposal.candidate} />,
         proposal.start.toString(),
         (proposal.start + proposal.period).toString(),

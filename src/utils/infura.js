@@ -1,14 +1,14 @@
-import Web3 from "web3";
+import Web3 from 'web3';
 
-import BigNumber from "bignumber.js";
-import { UniswapV2Router02 } from "../constants/contracts";
-import { ESD, UNI, USDC } from "../constants/tokens";
+import BigNumber from 'bignumber.js';
+import { UniswapV2Router02 } from '../constants/contracts';
+import { ESD, UNI, USDC } from '../constants/tokens';
 
-const as2networkAbi = require("../constants/abi/Dollar.json");
-const daoAbi = require("../constants/abi/Implementation.json");
-const poolAbi = require("../constants/abi/Pool.json");
-const uniswapRouterAbi = require("../constants/abi/UniswapV2Router02.json");
-const uniswapPairAbi = require("../constants/abi/UniswapV2Pair.json");
+const as2networkAbi = require('../constants/abi/Dollar.json');
+const daoAbi = require('../constants/abi/Implementation.json');
+const poolAbi = require('../constants/abi/Pool.json');
+const uniswapRouterAbi = require('../constants/abi/UniswapV2Router02.json');
+const uniswapPairAbi = require('../constants/abi/UniswapV2Pair.json');
 
 let web3;
 // eslint-disable-next-line no-undef
@@ -24,7 +24,7 @@ if (window.ethereum !== undefined) {
  * @return {Promise<string>}
  */
 export const getTokenBalance = async (token, account) => {
-  if (account === "") return "0";
+  if (account === '') return '0';
   const tokenContract = new web3.eth.Contract(as2networkAbi, token);
   return tokenContract.methods.balanceOf(account).call();
 };
@@ -55,7 +55,7 @@ export const getTokenAllowance = async (token, account, spender) => {
  * @return {Promise<string>}
  */
 export const getBalanceBonded = async (dao, account) => {
-  if (account === "") return "0";
+  if (account === '') return '0';
   const daoContract = new web3.eth.Contract(daoAbi, dao);
   return daoContract.methods.balanceOfBonded(account).call();
 };
@@ -306,7 +306,7 @@ export const getPool = async (dao) => {
  */
 export const getCouponEpochs = async (dao, account) => {
   const daoContract = new web3.eth.Contract(daoAbi, dao);
-  const events = await daoContract.getPastEvents("CouponPurchase", {
+  const events = await daoContract.getPastEvents('CouponPurchase', {
     filter: { account },
     fromBlock: 0,
   });
@@ -343,7 +343,7 @@ export const getCouponEpochs = async (dao, account) => {
 export const getAllProposals = async (dao) => {
   const daoContract = new web3.eth.Contract(daoAbi, dao);
   const payload = (
-    await daoContract.getPastEvents("Proposal", {
+    await daoContract.getPastEvents('Proposal', {
       fromBlock: 0,
     })
   ).map((event) => {
@@ -361,13 +361,13 @@ export const getAllProposals = async (dao) => {
  */
 export const getAllRegulations = async (dao) => {
   const daoContract = new web3.eth.Contract(daoAbi, dao);
-  const increaseP = daoContract.getPastEvents("SupplyIncrease", {
+  const increaseP = daoContract.getPastEvents('SupplyIncrease', {
     fromBlock: 0,
   });
-  const decreaseP = daoContract.getPastEvents("SupplyDecrease", {
+  const decreaseP = daoContract.getPastEvents('SupplyDecrease', {
     fromBlock: 0,
   });
-  const neutralP = daoContract.getPastEvents("SupplyNeutral", { fromBlock: 0 });
+  const neutralP = daoContract.getPastEvents('SupplyNeutral', { fromBlock: 0 });
 
   const [increase, decrease, neutral] = await Promise.all([
     increaseP,
@@ -376,9 +376,9 @@ export const getAllRegulations = async (dao) => {
   ]);
 
   const events = increase
-    .map((e) => ({ type: "INCREASE", data: e.returnValues }))
-    .concat(decrease.map((e) => ({ type: "DECREASE", data: e.returnValues })))
-    .concat(neutral.map((e) => ({ type: "NEUTRAL", data: e.returnValues })));
+    .map((e) => ({ type: 'INCREASE', data: e.returnValues }))
+    .concat(decrease.map((e) => ({ type: 'DECREASE', data: e.returnValues })))
+    .concat(neutral.map((e) => ({ type: 'NEUTRAL', data: e.returnValues })));
 
   return events.sort((a, b) => b.data.epoch - a.data.epoch);
 };
@@ -441,7 +441,7 @@ export const getPoolStatusOf = async (pool, account) => {
  * @return {Promise<string>}
  */
 export const getPoolBalanceOfBonded = async (pool, account) => {
-  if (account === "") return "0";
+  if (account === '') return '0';
   const poolContract = new web3.eth.Contract(poolAbi, pool);
   return poolContract.methods.balanceOfBonded(account).call();
 };
@@ -464,7 +464,7 @@ export const getPoolBalanceOfStaged = async (pool, account) => {
  * @return {Promise<string>}
  */
 export const getPoolBalanceOfRewarded = async (pool, account) => {
-  if (account === "") return "0";
+  if (account === '') return '0';
   const poolContract = new web3.eth.Contract(poolAbi, pool);
   return poolContract.methods.balanceOfRewarded(account).call();
 };

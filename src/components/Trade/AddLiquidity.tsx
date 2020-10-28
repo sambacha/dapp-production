@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import BigNumber from "bignumber.js";
-import { Box, Button, IconCirclePlus } from "@aragon/ui";
-import { addLiquidity } from "../../utils/web3";
+import React, { useState } from 'react';
+import BigNumber from 'bignumber.js';
+import { Box, Button, IconCirclePlus } from '@aragon/ui';
+import { addLiquidity } from '../../utils/web3';
 
-import { BalanceBlock, MaxButton, PriceSection } from "../common/index";
-import { toBaseUnitBN, toTokenUnitsBN } from "../../utils/number";
-import { ESD, UNI, USDC } from "../../constants/tokens";
-import { SLIPPAGE } from "../../utils/calculation";
-import BigNumberInput from "../common/BigNumberInput";
+import { BalanceBlock, MaxButton, PriceSection } from '../common/index';
+import { toBaseUnitBN, toTokenUnitsBN } from '../../utils/number';
+import { ESD, UNI, USDC } from '../../constants/tokens';
+import { SLIPPAGE } from '../../utils/calculation';
+import BigNumberInput from '../common/BigNumberInput';
 
 type AddliquidityProps = {
   userBalanceESD: BigNumber;
@@ -99,15 +99,15 @@ function AddLiquidity({
 
   return (
     <Box heading="Add Liquidity">
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         {/* Pool Status */}
-        <div style={{ width: "30%" }}>
+        <div style={{ width: '30%' }}>
           <BalanceBlock asset="USDC Balance" balance={userBalanceUSDC} />
         </div>
         {/* Add liquidity to pool */}
-        <div style={{ width: "70%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "35%", marginRight: "5%" }}>
+        <div style={{ width: '70%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '35%', marginRight: '5%' }}>
               <>
                 <BigNumberInput
                   adornment="ESD"
@@ -121,7 +121,7 @@ function AddLiquidity({
                 />
               </>
             </div>
-            <div style={{ width: "35%", marginRight: "5%" }}>
+            <div style={{ width: '35%', marginRight: '5%' }}>
               <BigNumberInput
                 adornment="USDC"
                 value={amountUSDC}
@@ -133,7 +133,7 @@ function AddLiquidity({
                 symbol=" Pool Tokens"
               />
             </div>
-            <div style={{ width: "30%" }}>
+            <div style={{ width: '30%' }}>
               <Button
                 wide
                 icon={<IconCirclePlus />}

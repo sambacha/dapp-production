@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { Box, Button, IconCirclePlus, IconCircleMinus } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { BalanceBlock, MaxButton, PriceSection } from "../common/index";
-import { buyESD, sellESD } from "../../utils/web3";
+import React, { useState } from 'react';
+import { Box, Button, IconCirclePlus, IconCircleMinus } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { BalanceBlock, MaxButton, PriceSection } from '../common/index';
+import { buyESD, sellESD } from '../../utils/web3';
 
-import { getCost, getProceeds } from "../../utils/infura";
+import { getCost, getProceeds } from '../../utils/infura';
 
-import { isPos, toBaseUnitBN, toTokenUnitsBN } from "../../utils/number";
-import { ESD, USDC } from "../../constants/tokens";
+import { isPos, toBaseUnitBN, toTokenUnitsBN } from '../../utils/number';
+import { ESD, USDC } from '../../constants/tokens';
 import {
   decreaseWithSlippage,
   increaseWithSlippage,
-} from "../../utils/calculation";
-import BigNumberInput from "../common/BigNumberInput";
+} from '../../utils/calculation';
+import BigNumberInput from '../common/BigNumberInput';
 
 type UniswapBuySellProps = {
   userBalanceESD: BigNumber;
@@ -56,31 +56,31 @@ function UniswapBuySell({
 
   return (
     <Box heading="Exchange">
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         {/* total Issued */}
-        <div style={{ width: "30%" }}>
+        <div style={{ width: '30%' }}>
           <BalanceBlock
             asset="Døllar Balance"
             balance={userBalanceESD}
-            suffix={" ESD"}
+            suffix={' ESD'}
           />
         </div>
         {/* Buy Token from Uniswap */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
               <>
                 <BigNumberInput
                   adornment="ESD"
                   value={buyAmount}
                   setter={(value) => {
                     setBuyAmount(value);
-                    isPos(value) ? updateCost(value) : updateCost("0");
+                    isPos(value) ? updateCost(value) : updateCost('0');
                   }}
                 />
               </>
             </div>
-            <div style={{ width: "40%" }}>
+            <div style={{ width: '40%' }}>
               <Button
                 wide
                 icon={<IconCirclePlus />}
@@ -96,18 +96,18 @@ function UniswapBuySell({
           </div>
           <PriceSection label="Cost: " amt={cost} symbol=" USDC" />
         </div>
-        <div style={{ width: "6%" }} />
+        <div style={{ width: '6%' }} />
         {/* Sell Token on Uniswap */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
               <>
                 <BigNumberInput
                   adornment="ESD"
                   value={sellAmount}
                   setter={(value) => {
                     setSellAmount(value);
-                    isPos(value) ? updateProceeds(value) : updateProceeds("0");
+                    isPos(value) ? updateProceeds(value) : updateProceeds('0');
                   }}
                 />
                 <MaxButton
@@ -123,7 +123,7 @@ function UniswapBuySell({
                 />
               </>
             </div>
-            <div style={{ width: "40%" }}>
+            <div style={{ width: '40%' }}>
               <Button
                 wide
                 icon={<IconCircleMinus />}

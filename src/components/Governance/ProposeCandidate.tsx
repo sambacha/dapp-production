@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Box, TextInput, Button, IconToken } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { recordVote } from "../../utils/web3";
+import React, { useState } from 'react';
+import { Box, TextInput, Button, IconToken } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { recordVote } from '../../utils/web3';
 
-import { ESDS } from "../../constants/tokens";
+import { ESDS } from '../../constants/tokens';
 
 type ProposeCandidateProps = {
   user: string;
@@ -13,7 +13,7 @@ type ProposeCandidateProps = {
 };
 
 function canPropose(stake: BigNumber, totalStake: BigNumber): boolean {
-  return stake.div(totalStake).comparedTo(new BigNumber("0.01")) >= 0;
+  return stake.div(totalStake).comparedTo(new BigNumber('0.01')) >= 0;
 }
 
 function plausibleCandidate(candidate: string): boolean {
@@ -26,13 +26,13 @@ function ProposeCandidate({
   totalStake,
   accountStatus,
 }: ProposeCandidateProps) {
-  const [candidate, setCandidate] = useState("0x");
+  const [candidate, setCandidate] = useState('0x');
 
   return (
     <Box heading="Propose">
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         {/* User balance */}
-        <div style={{ width: "62%", paddingTop: "2%" }}>
+        <div style={{ width: '62%', paddingTop: '2%' }}>
           <>
             <TextInput
               wide
@@ -41,15 +41,15 @@ function ProposeCandidate({
                 if (event.target.value) {
                   setCandidate(event.target.value);
                 } else {
-                  setCandidate("0x");
+                  setCandidate('0x');
                 }
               }}
             />
           </>
         </div>
-        <div style={{ width: "6%" }} />
+        <div style={{ width: '6%' }} />
         {/* Purchase coupons */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
+        <div style={{ width: '32%', paddingTop: '2%' }}>
           <Button
             wide
             icon={<IconToken />}
@@ -62,7 +62,7 @@ function ProposeCandidate({
               );
             }}
             disabled={
-              user === "" ||
+              user === '' ||
               !canPropose(stake, totalStake) ||
               !plausibleCandidate(candidate) ||
               accountStatus === 1

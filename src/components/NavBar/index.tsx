@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { Bar, BackButton, LinkBase } from "@aragon/ui";
-import ConnectButton from "./ConnectButton";
-import ChangeModeButton from "./SwitchTheme";
+import { Bar, BackButton, LinkBase } from '@aragon/ui';
+import ConnectButton from './ConnectButton';
+import ChangeModeButton from './SwitchTheme';
 
 type NavbarProps = {
   theme: string;
@@ -16,14 +16,14 @@ type NavbarProps = {
 function NavBar({ theme, updateTheme, hasWeb3, user, setUser }: NavbarProps) {
   const history = useHistory();
   const [isHome, updateIsHome] = useState(true);
-  const [page, setPage] = useState("");
+  const [page, setPage] = useState('');
 
   useEffect(() => {
-    const home = history.location.pathname === "/";
+    const home = history.location.pathname === '/';
     updateIsHome(home);
     return history.listen((location) => {
       setPage(location.pathname);
-      const home = history.location.pathname === "/";
+      const home = history.location.pathname === '/';
       updateIsHome(home);
     });
   }, [hasWeb3, user, history]);
@@ -35,7 +35,7 @@ function NavBar({ theme, updateTheme, hasWeb3, user, setUser }: NavbarProps) {
           <></>
         ) : (
           <>
-            <div style={{ height: "100%" }}>
+            <div style={{ height: '100%' }}>
               <BackButton
                 onClick={() => {
                   history.goBack();
@@ -45,44 +45,44 @@ function NavBar({ theme, updateTheme, hasWeb3, user, setUser }: NavbarProps) {
             <LinkButton
               title="Home"
               onClick={() => {
-                history.push("/");
+                history.push('/');
               }}
-              isSelected={page === "/"}
+              isSelected={page === '/'}
             />
             <LinkButton
               title="Wallet"
               onClick={() => {
-                history.push("/wallet/");
+                history.push('/wallet/');
               }}
-              isSelected={page.includes("/wallet")}
+              isSelected={page.includes('/wallet')}
             />
             <LinkButton
               title="Epoch"
               onClick={() => {
-                history.push("/epoch/");
+                history.push('/epoch/');
               }}
-              isSelected={page.includes("/epoch")}
+              isSelected={page.includes('/epoch')}
             />
             <LinkButton
               title="Trade"
               onClick={() => {
-                history.push("/trade/");
+                history.push('/trade/');
               }}
-              isSelected={page.includes("/trade")}
+              isSelected={page.includes('/trade')}
             />
             <LinkButton
               title="Rewards"
               onClick={() => {
-                history.push("/pool/");
+                history.push('/pool/');
               }}
-              isSelected={page.includes("/pool")}
+              isSelected={page.includes('/pool')}
             />
             <LinkButton
               title="Governance"
               onClick={() => {
-                history.push("/governance/");
+                history.push('/governance/');
               }}
-              isSelected={page.includes("/governance")}
+              isSelected={page.includes('/governance')}
             />
           </>
         )
@@ -112,7 +112,7 @@ function LinkButton({ title, onClick, isSelected = false }: linkButtonProps) {
     <div style={{ paddingLeft: 40 }}>
       <LinkBase onClick={onClick}>
         <div
-          style={{ padding: "1%", opacity: isSelected ? 1 : 0.5, fontSize: 17 }}
+          style={{ padding: '1%', opacity: isSelected ? 1 : 0.5, fontSize: 17 }}
         >
           {title}
         </div>

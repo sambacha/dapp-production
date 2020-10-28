@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import BigNumber from "bignumber.js";
+import BigNumber from 'bignumber.js';
 import {
   getPool,
   getPoolBalanceOfBonded,
@@ -12,19 +12,19 @@ import {
   getPoolTotalBonded,
   getTokenAllowance,
   getTokenBalance,
-} from "../../utils/infura";
-import { ESD, ESDS, UNI, USDC } from "../../constants/tokens";
-import { toTokenUnitsBN } from "../../utils/number";
-import { Header } from "@aragon/ui";
+} from '../../utils/infura';
+import { ESD, ESDS, UNI, USDC } from '../../constants/tokens';
+import { toTokenUnitsBN } from '../../utils/number';
+import { Header } from '@aragon/ui';
 
-import WithdrawDeposit from "./WithdrawDeposit";
-import BondUnbond from "./BondUnbond";
-import PoolPageHeader from "./Header";
-import Claim from "./Claim";
-import Provide from "./Provide";
-import IconHeader from "../common/IconHeader";
-import Migrate from "./Migrate";
-import { getLegacyPoolAddress, getPoolAddress } from "../../utils/pool";
+import WithdrawDeposit from './WithdrawDeposit';
+import BondUnbond from './BondUnbond';
+import PoolPageHeader from './Header';
+import Claim from './Claim';
+import Provide from './Provide';
+import IconHeader from '../common/IconHeader';
+import Migrate from './Migrate';
+import { getLegacyPoolAddress, getPoolAddress } from '../../utils/pool';
 
 function Pool({ user }: { user: string }) {
   const { override } = useParams();
@@ -32,7 +32,7 @@ function Pool({ user }: { user: string }) {
     user = override;
   }
 
-  const [poolAddress, setPoolAddress] = useState("");
+  const [poolAddress, setPoolAddress] = useState('');
   const [poolTotalBonded, setPoolTotalBonded] = useState(new BigNumber(0));
   const [pairBalanceESD, setPairBalanceESD] = useState(new BigNumber(0));
   const [pairBalanceUSDC, setPairBalanceUSDC] = useState(new BigNumber(0));
@@ -65,8 +65,8 @@ function Pool({ user }: { user: string }) {
 
   //Update User balances
   useEffect(() => {
-    if (user === "") {
-      setPoolAddress("");
+    if (user === '') {
+      setPoolAddress('');
       setPoolTotalBonded(new BigNumber(0));
       setPairBalanceESD(new BigNumber(0));
       setPairBalanceUSDC(new BigNumber(0));
@@ -201,7 +201,7 @@ function Pool({ user }: { user: string }) {
   }, [user]);
   // Check for error in .call()
   const isRewardedNegative = legacyUserRewardedBalance.isGreaterThan(
-    new BigNumber("1000000000000000000")
+    new BigNumber('1000000000000000000')
   );
   const hasLegacyBalance =
     legacyUserStagedBalance.isGreaterThan(0) ||
@@ -216,7 +216,7 @@ function Pool({ user }: { user: string }) {
 
       {hasLegacyBalance ? (
         <>
-          <Header primary={"Legacy Pool Migration"} />
+          <Header primary={'Legacy Pool Migration'} />
 
           <Migrate
             legacyPoolAddress={getLegacyPoolAddress(poolAddress)}
@@ -228,7 +228,7 @@ function Pool({ user }: { user: string }) {
           />
         </>
       ) : (
-        ""
+        ''
       )}
 
       <PoolPageHeader

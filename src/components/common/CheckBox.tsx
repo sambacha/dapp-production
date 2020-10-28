@@ -1,6 +1,6 @@
-import React from "react";
-import { Checkbox, useTheme } from "@aragon/ui";
-import styled from "styled-components";
+import React from 'react';
+import { Checkbox, useTheme } from '@aragon/ui';
+import styled from 'styled-components';
 
 type checkBoxProps = {
   text: string;
@@ -13,7 +13,7 @@ function MyCheckBox({ text, checked, onCheck }: checkBoxProps) {
   return (
     <CheckBoxWrapper theme={theme}>
       <Checkbox checked={checked} onChange={onCheck} />
-      <span style={{ margin: "4px" }}>{text}</span>
+      <span style={{ margin: '4px' }}>{text}</span>
       <br />
     </CheckBoxWrapper>
   );

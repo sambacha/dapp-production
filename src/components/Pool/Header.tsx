@@ -1,9 +1,9 @@
-import React from "react";
-import BigNumber from "bignumber.js";
+import React from 'react';
+import BigNumber from 'bignumber.js';
 
-import { BalanceBlock } from "../common/index";
-import TextBlock from "../common/TextBlock";
-import { ownership } from "../../utils/number";
+import { BalanceBlock } from '../common/index';
+import TextBlock from '../common/TextBlock';
+import { ownership } from '../../utils/number';
 
 type PoolPageHeaderProps = {
   accountUNIBalance: BigNumber;
@@ -14,7 +14,7 @@ type PoolPageHeaderProps = {
   accountPoolStatus: number;
 };
 
-const STATUS_MAP = ["Frozen", "Fluid"];
+const STATUS_MAP = ['Frozen', 'Fluid'];
 
 const PoolPageHeader = ({
   accountUNIBalance,
@@ -24,36 +24,36 @@ const PoolPageHeader = ({
   poolTotalBonded,
   accountPoolStatus,
 }: PoolPageHeaderProps) => (
-  <div style={{ padding: "2%", display: "flex", alignItems: "center" }}>
-    <div style={{ width: "20%" }}>
+  <div style={{ padding: '2%', display: 'flex', alignItems: 'center' }}>
+    <div style={{ width: '20%' }}>
       <BalanceBlock
         asset="Balance"
         balance={accountUNIBalance}
-        suffix={" UNI-V2"}
+        suffix={' UNI-V2'}
       />
     </div>
-    <div style={{ width: "20%" }}>
+    <div style={{ width: '20%' }}>
       <BalanceBlock
         asset="Rewarded"
         balance={accountRewardedESDBalance}
-        suffix={" ESD"}
+        suffix={' ESD'}
       />
     </div>
-    <div style={{ width: "20%" }}>
+    <div style={{ width: '20%' }}>
       <BalanceBlock
         asset="Claimable"
         balance={accountClaimableESDBalance}
-        suffix={" ESD"}
+        suffix={' ESD'}
       />
     </div>
-    <div style={{ width: "20%" }}>
+    <div style={{ width: '20%' }}>
       <BalanceBlock
         asset="Pool Ownership"
         balance={ownership(accountBondedBalance, poolTotalBonded)}
-        suffix={"%"}
+        suffix={'%'}
       />
     </div>
-    <div style={{ width: "20%" }}>
+    <div style={{ width: '20%' }}>
       <TextBlock label="Pool Status" text={STATUS_MAP[accountPoolStatus]} />
     </div>
   </div>

@@ -1,5 +1,5 @@
-import React from "react";
-import { Tag } from "@aragon/ui";
+import React from 'react';
+import { Tag } from '@aragon/ui';
 
 type RatioTagProps = {
   isSafe: boolean;
@@ -14,8 +14,8 @@ function RatioTag({ isSafe, ratio, useCollateral = true }: RatioTagProps) {
   ) : isSafe ? (
     ratio < 1.6 ? (
       <Tag background="#FFEBAD" color="#FEC100">
-        {" "}
-        Danger{" "}
+        {' '}
+        Danger{' '}
       </Tag>
     ) : (
       <Tag mode="new"> safe </Tag>

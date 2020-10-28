@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Header } from "@aragon/ui";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Header } from '@aragon/ui';
+import { useParams } from 'react-router-dom';
 
 import {
   getBalanceOfCoupons,
   getOutstandingCoupons,
   getTotalRedeemable,
-} from "../../utils/infura";
-import { ESD, ESDS } from "../../constants/tokens";
-import CouponMarketHeader from "./Header";
-import { toTokenUnitsBN } from "../../utils/number";
-import BigNumber from "bignumber.js";
-import RedeemCoupons from "./RedeemCoupons";
-import IconHeader from "../common/IconHeader";
+} from '../../utils/infura';
+import { ESD, ESDS } from '../../constants/tokens';
+import CouponMarketHeader from './Header';
+import { toTokenUnitsBN } from '../../utils/number';
+import BigNumber from 'bignumber.js';
+import RedeemCoupons from './RedeemCoupons';
+import IconHeader from '../common/IconHeader';
 
 function CouponEpoch({ user }: { user: string }) {
   const { epoch } = useParams();
@@ -24,7 +24,7 @@ function CouponEpoch({ user }: { user: string }) {
   const [userCouponBalance, setUserCouponBalance] = useState(new BigNumber(0));
 
   useEffect(() => {
-    if (user === "") {
+    if (user === '') {
       setUserCouponBalance(new BigNumber(0));
       return;
     }

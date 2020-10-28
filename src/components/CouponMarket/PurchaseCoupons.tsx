@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Box, Button, IconCirclePlus, IconCircleMinus } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { BalanceBlock, MaxButton, PriceSection } from "../common/index";
-import { approve, purchaseCoupons } from "../../utils/web3";
+import React, { useState } from 'react';
+import { Box, Button, IconCirclePlus, IconCircleMinus } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { BalanceBlock, MaxButton, PriceSection } from '../common/index';
+import { approve, purchaseCoupons } from '../../utils/web3';
 
-import { isPos, toBaseUnitBN, toTokenUnitsBN } from "../../utils/number";
-import { ESD, ESDS } from "../../constants/tokens";
-import { MAX_UINT256 } from "../../constants/values";
-import { getCouponPremium } from "../../utils/infura";
-import BigNumberInput from "../common/BigNumberInput";
+import { isPos, toBaseUnitBN, toTokenUnitsBN } from '../../utils/number';
+import { ESD, ESDS } from '../../constants/tokens';
+import { MAX_UINT256 } from '../../constants/values';
+import { getCouponPremium } from '../../utils/infura';
+import BigNumberInput from '../common/BigNumberInput';
 
 type PurchaseCouponsProps = {
   user: string;
@@ -40,16 +40,16 @@ function PurchaseCoupons({
   return (
     <Box heading="Purchase">
       {allowance.comparedTo(MAX_UINT256) === 0 ? (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: 'flex' }}>
           {/* User balance */}
-          <div style={{ width: "30%" }}>
-            <BalanceBlock asset={`Balance`} balance={balance} suffix={" ESD"} />
+          <div style={{ width: '30%' }}>
+            <BalanceBlock asset={`Balance`} balance={balance} suffix={' ESD'} />
           </div>
-          <div style={{ width: "38%" }} />
+          <div style={{ width: '38%' }} />
           {/* Purchase coupons */}
-          <div style={{ width: "32%", paddingTop: "2%" }}>
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "60%" }}>
+          <div style={{ width: '32%', paddingTop: '2%' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '60%' }}>
                 <>
                   <BigNumberInput
                     adornment="ESD"
@@ -71,7 +71,7 @@ function PurchaseCoupons({
                   />
                 </>
               </div>
-              <div style={{ width: "40%" }}>
+              <div style={{ width: '40%' }}>
                 <Button
                   wide
                   icon={<IconCircleMinus />}
@@ -83,7 +83,7 @@ function PurchaseCoupons({
                     );
                   }}
                   disabled={
-                    user === "" ||
+                    user === '' ||
                     debt.isZero() ||
                     balance.isZero() ||
                     !isPos(purchaseAmount)
@@ -95,14 +95,14 @@ function PurchaseCoupons({
           </div>
         </div>
       ) : (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: 'flex' }}>
           {/* User balance */}
-          <div style={{ width: "30%" }}>
+          <div style={{ width: '30%' }}>
             <BalanceBlock asset={`Døllar Balance`} balance={balance} />
           </div>
-          <div style={{ width: "40%" }} />
+          <div style={{ width: '40%' }} />
           {/* Approve DAO to spend Døllar */}
-          <div style={{ width: "30%", paddingTop: "2%" }}>
+          <div style={{ width: '30%', paddingTop: '2%' }}>
             <Button
               wide
               icon={<IconCirclePlus />}
@@ -110,7 +110,7 @@ function PurchaseCoupons({
               onClick={() => {
                 approve(ESD.addr, ESDS.addr);
               }}
-              disabled={user === ""}
+              disabled={user === ''}
             />
           </div>
         </div>

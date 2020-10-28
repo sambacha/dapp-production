@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Header } from "@aragon/ui";
+import React, { useState, useEffect } from 'react';
+import { Header } from '@aragon/ui';
 
-import { getEpoch, getEpochTime } from "../../utils/infura";
-import { ESDS } from "../../constants/tokens";
-import AdvanceEpoch from "./AdvanceEpoch";
-import EpochPageHeader from "./Header";
-import IconHeader from "../common/IconHeader";
+import { getEpoch, getEpochTime } from '../../utils/infura';
+import { ESDS } from '../../constants/tokens';
+import AdvanceEpoch from './AdvanceEpoch';
+import EpochPageHeader from './Header';
+import IconHeader from '../common/IconHeader';
 
 function EpochDetail({ user }: { user: string }) {
   const [epoch, setEpoch] = useState(0);

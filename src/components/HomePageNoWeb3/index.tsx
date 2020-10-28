@@ -1,25 +1,25 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { Header, Box, LinkBase, Tag } from "@aragon/ui";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { Header, Box, LinkBase, Tag } from '@aragon/ui';
 
 function HomePageNoWeb3() {
   const history = useHistory();
 
   return (
     <>
-      <div style={{ padding: "1%", display: "flex", alignItems: "center" }}>
-        <div style={{ marginLeft: "2%" }}>
+      <div style={{ padding: '1%', display: 'flex', alignItems: 'center' }}>
+        <div style={{ marginLeft: '2%' }}>
           <Header primary="EDI dashboard." />
         </div>
       </div>
-      <div style={{ padding: "1%", display: "flex", alignItems: "center" }}>
+      <div style={{ padding: '1%', display: 'flex', alignItems: 'center' }}>
         <MainButton
           title="No web3 wallet detected"
           description="Click to get Metamask."
           icon={<i className="fas fa-times-circle" />}
           onClick={() => {
             // @ts-ignore
-            window.location = "https://www.metamask.io/";
+            window.location = 'https://www.metamask.io/';
           }}
         />
       </div>
@@ -43,7 +43,7 @@ function MainButton({
   tag,
 }: MainButtonPropx) {
   return (
-    <LinkBase onClick={onClick} style={{ width: "100%" }}>
+    <LinkBase onClick={onClick} style={{ width: '100%' }}>
       <Box>
         <div style={{ padding: 10, fontSize: 18 }}>
           {title}

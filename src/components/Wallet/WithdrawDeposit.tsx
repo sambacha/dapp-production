@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Box, Button, IconCirclePlus, IconCircleMinus } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { BalanceBlock, MaxButton } from "../common/index";
-import { approve, deposit, withdraw } from "../../utils/web3";
-import { isPos, toBaseUnitBN } from "../../utils/number";
-import { ESD, ESDS } from "../../constants/tokens";
-import { MAX_UINT256 } from "../../constants/values";
-import BigNumberInput from "../common/BigNumberInput";
+import React, { useState } from 'react';
+import { Box, Button, IconCirclePlus, IconCircleMinus } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { BalanceBlock, MaxButton } from '../common/index';
+import { approve, deposit, withdraw } from '../../utils/web3';
+import { isPos, toBaseUnitBN } from '../../utils/number';
+import { ESD, ESDS } from '../../constants/tokens';
+import { MAX_UINT256 } from '../../constants/values';
+import BigNumberInput from '../common/BigNumberInput';
 
 type WithdrawDepositProps = {
   user: string;
@@ -29,19 +29,19 @@ function WithdrawDeposit({
   return (
     <Box heading="Stage">
       {allowance.comparedTo(MAX_UINT256) === 0 ? (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: 'flex' }}>
           {/* total Issued */}
-          <div style={{ width: "30%" }}>
+          <div style={{ width: '30%' }}>
             <BalanceBlock
               asset="Staged"
               balance={stagedBalance}
-              suffix={"ESD"}
+              suffix={'ESD'}
             />
           </div>
           {/* Deposit Døllar into DAO */}
-          <div style={{ width: "32%", paddingTop: "2%" }}>
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "60%" }}>
+          <div style={{ width: '32%', paddingTop: '2%' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '60%' }}>
                 <>
                   <BigNumberInput
                     adornment="ESD"
@@ -56,7 +56,7 @@ function WithdrawDeposit({
                   />
                 </>
               </div>
-              <div style={{ width: "40%" }}>
+              <div style={{ width: '40%' }}>
                 <Button
                   wide
                   icon={<IconCirclePlus />}
@@ -76,11 +76,11 @@ function WithdrawDeposit({
               </div>
             </div>
           </div>
-          <div style={{ width: "6%" }} />
+          <div style={{ width: '6%' }} />
           {/* Withdraw Døllar from DAO */}
-          <div style={{ width: "32%", paddingTop: "2%" }}>
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "60%" }}>
+          <div style={{ width: '32%', paddingTop: '2%' }}>
+            <div style={{ display: 'flex' }}>
+              <div style={{ width: '60%' }}>
                 <>
                   <BigNumberInput
                     adornment="ESD"
@@ -95,7 +95,7 @@ function WithdrawDeposit({
                   />
                 </>
               </div>
-              <div style={{ width: "40%" }}>
+              <div style={{ width: '40%' }}>
                 <Button
                   wide
                   icon={<IconCircleMinus />}
@@ -117,18 +117,18 @@ function WithdrawDeposit({
           </div>
         </div>
       ) : (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: 'flex' }}>
           {/* total Issued */}
-          <div style={{ width: "30%" }}>
+          <div style={{ width: '30%' }}>
             <BalanceBlock
               asset="Staged"
               balance={stagedBalance}
-              suffix={"ESD"}
+              suffix={'ESD'}
             />
           </div>
-          <div style={{ width: "40%" }} />
+          <div style={{ width: '40%' }} />
           {/* Approve DAO to spend Døllar */}
-          <div style={{ width: "30%", paddingTop: "2%" }}>
+          <div style={{ width: '30%', paddingTop: '2%' }}>
             <Button
               wide
               icon={<IconCirclePlus />}
@@ -136,7 +136,7 @@ function WithdrawDeposit({
               onClick={() => {
                 approve(ESD.addr, ESDS.addr);
               }}
-              disabled={user === ""}
+              disabled={user === ''}
             />
           </div>
         </div>

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import BigNumber from "bignumber.js";
-import { BalanceBlock } from "../common";
+import BigNumber from 'bignumber.js';
+import { BalanceBlock } from '../common';
 
 type CouponEpochHeaderProps = {
   redeemable: BigNumber;
@@ -14,18 +14,18 @@ const CouponEpochHeader = ({
   outstanding,
   balance,
 }: CouponEpochHeaderProps) => (
-  <div style={{ padding: "2%", display: "flex", alignItems: "center" }}>
-    <div style={{ width: "25%" }}>
+  <div style={{ padding: '2%', display: 'flex', alignItems: 'center' }}>
+    <div style={{ width: '25%' }}>
       <BalanceBlock
         asset="Total Redeemable"
         balance={redeemable}
-        suffix={" ESD"}
+        suffix={' ESD'}
       />
     </div>
-    <div style={{ width: "25%" }}>
+    <div style={{ width: '25%' }}>
       <BalanceBlock asset="Outstanding Coupons" balance={outstanding} />
     </div>
-    <div style={{ width: "25%" }}>
+    <div style={{ width: '25%' }}>
       <BalanceBlock asset="Coupon Balance" balance={balance} />
     </div>
   </div>

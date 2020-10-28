@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import BigNumber from "bignumber.js";
-import { BalanceBlock } from "../common";
+import BigNumber from 'bignumber.js';
+import { BalanceBlock } from '../common';
 
 type VoteHeaderProps = {
   approveFor: BigNumber;
@@ -35,14 +35,14 @@ const VoteHeader = ({
   totalStake,
   showParticipation,
 }: VoteHeaderProps) => (
-  <div style={{ padding: "2%", display: "flex", alignItems: "center" }}>
-    <div style={{ width: "25%" }}>
-      <BalanceBlock asset="Approve" balance={approveFor} suffix={"ESDS"} />
+  <div style={{ padding: '2%', display: 'flex', alignItems: 'center' }}>
+    <div style={{ width: '25%' }}>
+      <BalanceBlock asset="Approve" balance={approveFor} suffix={'ESDS'} />
     </div>
-    <div style={{ width: "25%" }}>
-      <BalanceBlock asset="Reject" balance={rejectFor} suffix={"ESDS"} />
+    <div style={{ width: '25%' }}>
+      <BalanceBlock asset="Reject" balance={rejectFor} suffix={'ESDS'} />
     </div>
-    <div style={{ width: "25%" }}>
+    <div style={{ width: '25%' }}>
       <BalanceBlock
         asset="Approval"
         balance={approval(approveFor, rejectFor)}
@@ -50,7 +50,7 @@ const VoteHeader = ({
       />
     </div>
     {showParticipation ? (
-      <div style={{ width: "25%" }}>
+      <div style={{ width: '25%' }}>
         <BalanceBlock
           asset="Participation"
           balance={participation(approveFor, rejectFor, totalStake)}
@@ -58,7 +58,7 @@ const VoteHeader = ({
         />
       </div>
     ) : (
-      ""
+      ''
     )}
   </div>
 );

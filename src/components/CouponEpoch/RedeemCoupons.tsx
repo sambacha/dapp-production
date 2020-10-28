@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Box, Button, IconCirclePlus, IconBlank } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { BalanceBlock, MaxButton } from "../common/index";
-import { redeemCoupons } from "../../utils/web3";
+import React, { useState } from 'react';
+import { Box, Button, IconCirclePlus, IconBlank } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { BalanceBlock, MaxButton } from '../common/index';
+import { redeemCoupons } from '../../utils/web3';
 
-import { isPos, toBaseUnitBN } from "../../utils/number";
-import { ESD, ESDS } from "../../constants/tokens";
-import BigNumberInput from "../common/BigNumberInput";
+import { isPos, toBaseUnitBN } from '../../utils/number';
+import { ESD, ESDS } from '../../constants/tokens';
+import BigNumberInput from '../common/BigNumberInput';
 
 type RedeemCouponsProps = {
   user: string;
@@ -25,16 +25,16 @@ function RedeemCoupons({
 
   return (
     <Box heading="Redeem">
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         {/* User balance */}
-        <div style={{ width: "30%" }}>
+        <div style={{ width: '30%' }}>
           <BalanceBlock asset={`Coupon Balance`} balance={balance} />
         </div>
-        <div style={{ width: "38%" }} />
+        <div style={{ width: '38%' }} />
         {/* Redeem coupons */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
               <>
                 <BigNumberInput
                   adornment={<IconBlank />}
@@ -50,7 +50,7 @@ function RedeemCoupons({
                 />
               </>
             </div>
-            <div style={{ width: "40%" }}>
+            <div style={{ width: '40%' }}>
               <Button
                 wide
                 icon={<IconCirclePlus />}
@@ -63,7 +63,7 @@ function RedeemCoupons({
                   );
                 }}
                 disabled={
-                  user === "" ||
+                  user === '' ||
                   redeemable.isZero() ||
                   balance.isZero() ||
                   !isPos(redeemAmount)

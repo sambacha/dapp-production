@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Box, Button, IconArrowDown, IconCircleMinus } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { BalanceBlock } from "../common/index";
-import { claimPool, unbondPool, withdrawPool } from "../../utils/web3";
-import { isPos, toBaseUnitBN } from "../../utils/number";
-import { ESD, UNI } from "../../constants/tokens";
+import React, { useState } from 'react';
+import { Box, Button, IconArrowDown, IconCircleMinus } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { BalanceBlock } from '../common/index';
+import { claimPool, unbondPool, withdrawPool } from '../../utils/web3';
+import { isPos, toBaseUnitBN } from '../../utils/number';
+import { ESD, UNI } from '../../constants/tokens';
 
 type MigrateProps = {
   legacyPoolAddress: string;
@@ -29,12 +29,12 @@ function Migrate({
 
   return (
     <Box heading="Migrate">
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         {/* Unbond UNI-V2 within Pool */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
-              <BalanceBlock asset="Bonded" balance={bonded} suffix={"UNI-V2"} />
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
+              <BalanceBlock asset="Bonded" balance={bonded} suffix={'UNI-V2'} />
               <Button
                 wide
                 icon={<IconCircleMinus />}
@@ -47,7 +47,7 @@ function Migrate({
                   );
                 }}
                 disabled={
-                  legacyPoolAddress === "" ||
+                  legacyPoolAddress === '' ||
                   !isPos(bonded) ||
                   unbonded ||
                   isRewardNegative
@@ -57,10 +57,10 @@ function Migrate({
           </div>
         </div>
         {/* Withdraw UNI-V2 within Pool */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
-              <BalanceBlock asset="Staged" balance={staged} suffix={"UNI-V2"} />
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
+              <BalanceBlock asset="Staged" balance={staged} suffix={'UNI-V2'} />
               <Button
                 wide
                 icon={<IconCircleMinus />}
@@ -73,7 +73,7 @@ function Migrate({
                   );
                 }}
                 disabled={
-                  legacyPoolAddress === "" ||
+                  legacyPoolAddress === '' ||
                   !isPos(staged) ||
                   withdrawn ||
                   status == 1
@@ -83,13 +83,13 @@ function Migrate({
           </div>
         </div>
         {/* Claim ESD within Pool */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
               <BalanceBlock
                 asset="Claimable"
                 balance={claimable}
-                suffix={"ESD"}
+                suffix={'ESD'}
               />
               <Button
                 wide
@@ -103,7 +103,7 @@ function Migrate({
                   );
                 }}
                 disabled={
-                  legacyPoolAddress === "" ||
+                  legacyPoolAddress === '' ||
                   !isPos(claimable) ||
                   claimed ||
                   status == 1

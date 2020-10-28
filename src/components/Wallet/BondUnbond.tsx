@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Box, Button, IconCirclePlus, IconCircleMinus } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { BalanceBlock, MaxButton } from "../common/index";
-import { bond, unbondUnderlying } from "../../utils/web3";
-import { isPos, toBaseUnitBN } from "../../utils/number";
-import { ESD, ESDS } from "../../constants/tokens";
-import BigNumberInput from "../common/BigNumberInput";
+import React, { useState } from 'react';
+import { Box, Button, IconCirclePlus, IconCircleMinus } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { BalanceBlock, MaxButton } from '../common/index';
+import { bond, unbondUnderlying } from '../../utils/web3';
+import { isPos, toBaseUnitBN } from '../../utils/number';
+import { ESD, ESDS } from '../../constants/tokens';
+import BigNumberInput from '../common/BigNumberInput';
 
 type BondUnbondProps = {
   staged: BigNumber;
@@ -19,15 +19,15 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
 
   return (
     <Box heading="Bond">
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         {/* Total bonded */}
-        <div style={{ width: "30%" }}>
-          <BalanceBlock asset="Bonded" balance={bonded} suffix={"ESD"} />
+        <div style={{ width: '30%' }}>
+          <BalanceBlock asset="Bonded" balance={bonded} suffix={'ESD'} />
         </div>
         {/* Bond Døllar within DAO */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
               <>
                 <BigNumberInput
                   adornment="ESD"
@@ -42,7 +42,7 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
                 />
               </>
             </div>
-            <div style={{ width: "40%" }}>
+            <div style={{ width: '40%' }}>
               <Button
                 wide
                 icon={<IconCirclePlus />}
@@ -59,11 +59,11 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
             </div>
           </div>
         </div>
-        <div style={{ width: "6%" }} />
+        <div style={{ width: '6%' }} />
         {/* Unbond Døllar within DAO */}
-        <div style={{ width: "32%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "60%" }}>
+        <div style={{ width: '32%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '60%' }}>
               <>
                 <BigNumberInput
                   adornment="ESD"
@@ -78,7 +78,7 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
                 />
               </>
             </div>
-            <div style={{ width: "40%" }}>
+            <div style={{ width: '40%' }}>
               <Button
                 wide
                 icon={<IconCircleMinus />}

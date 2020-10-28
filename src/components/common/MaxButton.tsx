@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { ButtonBase } from "@aragon/ui";
+import { ButtonBase } from '@aragon/ui';
 
 function MaxButton({ onClick }: { onClick: Function }) {
   return (

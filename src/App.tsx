@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
-import { Main } from "@aragon/ui";
-import { updateModalMode } from "./utils/web3";
-import { storePreference, getPreference } from "./utils/storage";
-import NavBar from "./components/NavBar";
-import HomePage from "./components/HomePage";
-import Trade from "./components/Trade/index";
-import Footer from "./components/Footer";
-import Wallet from "./components/Wallet";
-import EpochDetail from "./components/EpochDetail";
-import CouponMarket from "./components/CouponMarket";
-import CouponEpoch from "./components/CouponEpoch";
-import Governance from "./components/Governance";
-import Candidate from "./components/Candidate";
-import Regulation from "./components/Regulation";
-import Pool from "./components/Pool";
-import HomePageNoWeb3 from "./components/HomePageNoWeb3";
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { Main } from '@aragon/ui';
+import { updateModalMode } from './utils/web3';
+import { storePreference, getPreference } from './utils/storage';
+import NavBar from './components/NavBar';
+import HomePage from './components/HomePage';
+import Trade from './components/Trade/index';
+import Footer from './components/Footer';
+import Wallet from './components/Wallet';
+import EpochDetail from './components/EpochDetail';
+import CouponMarket from './components/CouponMarket';
+import CouponEpoch from './components/CouponEpoch';
+import Governance from './components/Governance';
+import Candidate from './components/Candidate';
+import Regulation from './components/Regulation';
+import Pool from './components/Pool';
+import HomePageNoWeb3 from './components/HomePageNoWeb3';
 
 function App() {
-  const storedTheme = getPreference("theme", "light");
+  const storedTheme = getPreference('theme', 'light');
 
   const [hasWeb3, setHasWeb3] = useState(false);
-  const [user, setUser] = useState(""); // the current connected user
+  const [user, setUser] = useState(''); // the current connected user
   const [theme, setTheme] = useState(storedTheme);
 
   const updateTheme = (newTheme: string) => {
     setTheme(newTheme);
     updateModalMode(newTheme);
-    storePreference("theme", newTheme);
+    storePreference('theme', newTheme);
   };
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function App() {
     async function updateUserInfo() {
       if (!isCancelled) {
         // @ts-ignore
-        setHasWeb3(typeof window.ethereum !== "undefined");
+        setHasWeb3(typeof window.ethereum !== 'undefined');
       }
     }
 
@@ -110,7 +110,7 @@ function App() {
             </Route>
           </Switch>
         )}
-        <div style={{ height: "128px", width: "100%" }} />
+        <div style={{ height: '128px', width: '100%' }} />
         <Footer theme={theme} />
       </Main>
     </Router>

@@ -1,6 +1,6 @@
-import BigNumber from "bignumber.js";
+import BigNumber from 'bignumber.js';
 
-export const SLIPPAGE = new BigNumber("0.02");
+export const SLIPPAGE = new BigNumber('0.02');
 
 export function increaseWithSlippage(n) {
   return new BigNumber(n)

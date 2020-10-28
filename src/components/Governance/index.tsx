@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { Header } from "@aragon/ui";
+import React, { useState, useEffect } from 'react';
+import { Header } from '@aragon/ui';
 
 import {
   getImplementation,
   getStatusOf,
   getTokenBalance,
   getTokenTotalSupply,
-} from "../../utils/infura";
-import { ESDS } from "../../constants/tokens";
-import { toTokenUnitsBN } from "../../utils/number";
-import BigNumber from "bignumber.js";
-import GovernanceHeader from "./Header";
-import ProposeCandidate from "./ProposeCandidate";
-import CandidateHistory from "./CandidateHistory";
-import IconHeader from "../common/IconHeader";
+} from '../../utils/infura';
+import { ESDS } from '../../constants/tokens';
+import { toTokenUnitsBN } from '../../utils/number';
+import BigNumber from 'bignumber.js';
+import GovernanceHeader from './Header';
+import ProposeCandidate from './ProposeCandidate';
+import CandidateHistory from './CandidateHistory';
+import IconHeader from '../common/IconHeader';
 
 function Governance({ user }: { user: string }) {
   const [stake, setStake] = useState(new BigNumber(0));
   const [totalStake, setTotalStake] = useState(new BigNumber(0));
   const [userStatus, setUserStatus] = useState(0);
-  const [implementation, setImplementation] = useState("0x");
+  const [implementation, setImplementation] = useState('0x');
 
   useEffect(() => {
-    if (user === "") {
+    if (user === '') {
       setStake(new BigNumber(0));
       setUserStatus(0);
       return;

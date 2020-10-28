@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import BigNumber from "bignumber.js";
+import BigNumber from 'bignumber.js';
 import {
   getBalanceBonded,
   getBalanceOfStaged,
@@ -9,14 +9,14 @@ import {
   getTokenAllowance,
   getTokenBalance,
   getTokenTotalSupply,
-} from "../../utils/infura";
-import { ESD, ESDS } from "../../constants/tokens";
-import { toTokenUnitsBN } from "../../utils/number";
+} from '../../utils/infura';
+import { ESD, ESDS } from '../../constants/tokens';
+import { toTokenUnitsBN } from '../../utils/number';
 
-import AccountPageHeader from "./Header";
-import WithdrawDeposit from "./WithdrawDeposit";
-import BondUnbond from "./BondUnbond";
-import IconHeader from "../common/IconHeader";
+import AccountPageHeader from './Header';
+import WithdrawDeposit from './WithdrawDeposit';
+import BondUnbond from './BondUnbond';
+import IconHeader from '../common/IconHeader';
 
 function Wallet({ user }: { user: string }) {
   const { override } = useParams();
@@ -34,7 +34,7 @@ function Wallet({ user }: { user: string }) {
 
   //Update User balances
   useEffect(() => {
-    if (user === "") {
+    if (user === '') {
       setUserESDBalance(new BigNumber(0));
       setUserESDAllowance(new BigNumber(0));
       setUserESDSBalance(new BigNumber(0));

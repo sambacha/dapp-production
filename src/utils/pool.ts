@@ -1,6 +1,6 @@
-import { getPool } from "./infura";
-import { ESDS } from "../constants/tokens";
-import { DollarPool1, DollarPool2, DollarPool3 } from "../constants/contracts";
+import { getPool } from './infura';
+import { ESDS } from '../constants/tokens';
+import { DollarPool1, DollarPool2, DollarPool3 } from '../constants/contracts';
 
 export async function getPoolAddress(): Promise<string> {
   const pool = await getPool(ESDS.addr);
@@ -11,7 +11,7 @@ export async function getPoolAddress(): Promise<string> {
     return DollarPool3;
   }
 
-  throw "Unrecognized Pool Address";
+  throw 'Unrecognized Pool Address';
 }
 
 export function getLegacyPoolAddress(poolAddress): string {
@@ -22,5 +22,5 @@ export function getLegacyPoolAddress(poolAddress): string {
     return DollarPool2;
   }
 
-  throw "Unrecognized Pool Address";
+  throw 'Unrecognized Pool Address';
 }

@@ -1,27 +1,26 @@
 /* eslint-disable camelcase */
-import Web3 from "web3";
-import BigNumber from "bignumber.js";
+import Web3 from 'web3';
+import BigNumber from 'bignumber.js';
 
-import { notify } from "./txNotifier.ts";
-import { UniswapV2Router02 } from "../constants/contracts";
+import { notify } from './txNotifier.ts';
+import { UniswapV2Router02 } from '../constants/contracts';
 
-import { ESD, USDC } from "../constants/tokens";
+import { ESD, USDC } from '../constants/tokens';
 
-const uniswapRouterAbi = require("../constants/abi/UniswapV2Router02.json");
-const testnetUSDCAbi = require("../constants/abi/TestnetUSDC.json");
-const daoAbi = require("../constants/abi/Implementation.json");
-const poolAbi = require("../constants/abi/Pool.json");
+const uniswapRouterAbi = require('../constants/abi/UniswapV2Router02.json');
+const testnetUSDCAbi = require('../constants/abi/TestnetUSDC.json');
+const daoAbi = require('../constants/abi/Implementation.json');
+const poolAbi = require('../constants/abi/Pool.json');
 
 const DEADLINE_FROM_NOW = 60 * 15;
-const UINT256_MAX =
-  "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
+const UINT256_MAX = '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
 
 /**
  * Connection Utilities
  */
 
 export const updateModalMode = async (theme) => {
-  window.darkMode = theme === "dark";
+  window.darkMode = theme === 'dark';
 };
 
 export const connect = async () => {
@@ -62,7 +61,7 @@ export const approve = async (tokenAddr, spender, amt = UINT256_MAX) => {
   await oToken.methods
     .approve(spender, amt)
     .send({ from: account })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -74,7 +73,7 @@ export const mintTestnetUSDC = async (amount) => {
   await usdc.methods
     .mint(account, new BigNumber(amount).toFixed())
     .send({ from: account })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -87,7 +86,7 @@ export const buyESD = async (buyAmount, maxInputAmount) => {
   const account = await checkConnectedAndGetAddress();
   const router = new window.web3.eth.Contract(
     uniswapRouterAbi,
-    UniswapV2Router02
+    UniswapV2Router02,
   );
   const deadline = Math.ceil(Date.now() / 1000) + DEADLINE_FROM_NOW;
 
@@ -97,10 +96,10 @@ export const buyESD = async (buyAmount, maxInputAmount) => {
       maxInputAmount,
       [USDC.addr, ESD.addr],
       account,
-      deadline
+      deadline,
     )
     .send({ from: account })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -109,7 +108,7 @@ export const sellESD = async (sellAmount, minOutputAmount) => {
   const account = await checkConnectedAndGetAddress();
   const router = new window.web3.eth.Contract(
     uniswapRouterAbi,
-    UniswapV2Router02
+    UniswapV2Router02,
   );
   const deadline = Math.ceil(Date.now() / 1000) + DEADLINE_FROM_NOW;
 
@@ -119,10 +118,10 @@ export const sellESD = async (sellAmount, minOutputAmount) => {
       minOutputAmount,
       [ESD.addr, USDC.addr],
       account,
-      deadline
+      deadline,
     )
     .send({ from: account })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -131,7 +130,7 @@ export const addLiquidity = async (amountESD, amountUSDC, slippage) => {
   const account = await checkConnectedAndGetAddress();
   const router = new window.web3.eth.Contract(
     uniswapRouterAbi,
-    UniswapV2Router02
+    UniswapV2Router02,
   );
   const deadline = Math.ceil(Date.now() / 1000) + DEADLINE_FROM_NOW;
   const slippageBN = new BigNumber(slippage);
@@ -151,10 +150,10 @@ export const addLiquidity = async (amountESD, amountUSDC, slippage) => {
       minAmountESD,
       minAmountUSDC,
       account,
-      deadline
+      deadline,
     )
     .send({ from: account })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -162,12 +161,12 @@ export const addLiquidity = async (amountESD, amountUSDC, slippage) => {
 export const removeLiquidity = async (
   liquidityAmount,
   minAmountESD,
-  minAmountUSDC
+  minAmountUSDC,
 ) => {
   const account = await checkConnectedAndGetAddress();
   const router = new window.web3.eth.Contract(
     uniswapRouterAbi,
-    UniswapV2Router02
+    UniswapV2Router02,
   );
   const deadline = Math.ceil(Date.now() / 1000) + DEADLINE_FROM_NOW;
 
@@ -179,10 +178,10 @@ export const removeLiquidity = async (
       new BigNumber(minAmountESD).toFixed(),
       new BigNumber(minAmountUSDC).toFixed(),
       account,
-      deadline
+      deadline,
     )
     .send({ from: account })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -199,7 +198,7 @@ export const advance = async (dao) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -212,7 +211,7 @@ export const deposit = async (dao, amount) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -225,7 +224,7 @@ export const withdraw = async (dao, amount) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -238,7 +237,7 @@ export const bond = async (dao, amount) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -251,7 +250,7 @@ export const unbond = async (dao, amount) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -264,7 +263,7 @@ export const unbondUnderlying = async (dao, amount) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -277,7 +276,7 @@ export const purchaseCoupons = async (dao, amount) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -290,7 +289,7 @@ export const redeemCoupons = async (dao, epoch, amount) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -303,7 +302,7 @@ export const recordVote = async (dao, candidate, voteType) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -316,7 +315,7 @@ export const commit = async (dao, candidate) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
     });
 };
@@ -330,7 +329,7 @@ export const depositPool = async (pool, amount, callback) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
       callback(hash);
     });
@@ -344,7 +343,7 @@ export const withdrawPool = async (pool, amount, callback) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
       callback(hash);
     });
@@ -358,7 +357,7 @@ export const bondPool = async (pool, amount, callback) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
       callback(hash);
     });
@@ -372,7 +371,7 @@ export const unbondPool = async (pool, amount, callback) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
       callback(hash);
     });
@@ -386,7 +385,7 @@ export const claimPool = async (pool, amount, callback) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
       callback(hash);
     });
@@ -400,7 +399,7 @@ export const providePool = async (pool, amount, callback) => {
     .send({
       from: account,
     })
-    .on("transactionHash", (hash) => {
+    .on('transactionHash', (hash) => {
       notify.hash(hash);
       callback(hash);
     });

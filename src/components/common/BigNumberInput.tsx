@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import BigNumber from "bignumber.js";
-import { TextInput } from "@aragon/ui";
+import BigNumber from 'bignumber.js';
+import { TextInput } from '@aragon/ui';
 
 type BigNumberInputProps = {
   value: BigNumber;
@@ -23,7 +23,7 @@ function BigNumberInput({
         adornmentPosition="end"
         adornment={adornment}
         wide
-        value={value.isNegative() ? "" : value.toFixed()}
+        value={value.isNegative() ? '' : value.toFixed()}
         onChange={(event) => {
           if (event.target.value) {
             setter(new BigNumber(event.target.value));

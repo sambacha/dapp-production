@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Header, IdentityBadge } from "@aragon/ui";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Header, IdentityBadge } from '@aragon/ui';
+import { useParams } from 'react-router-dom';
 
 import {
   getApproveFor,
@@ -14,16 +14,16 @@ import {
   getTokenBalance,
   getTokenTotalSupply,
   getTotalBondedAt,
-} from "../../utils/infura";
-import { ESDS } from "../../constants/tokens";
-import { toTokenUnitsBN } from "../../utils/number";
-import BigNumber from "bignumber.js";
-import Vote from "./Vote";
-import VoteHeader from "./VoteHeader";
-import CommitHeader from "./CommitHeader";
-import Commit from "./Commit";
-import IconHeader from "../common/IconHeader";
-import { proposalStatus } from "../../utils/gov";
+} from '../../utils/infura';
+import { ESDS } from '../../constants/tokens';
+import { toTokenUnitsBN } from '../../utils/number';
+import BigNumber from 'bignumber.js';
+import Vote from './Vote';
+import VoteHeader from './VoteHeader';
+import CommitHeader from './CommitHeader';
+import Commit from './Commit';
+import IconHeader from '../common/IconHeader';
+import { proposalStatus } from '../../utils/gov';
 
 function Candidate({ user }: { user: string }) {
   const { candidate } = useParams();
@@ -40,7 +40,7 @@ function Candidate({ user }: { user: string }) {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    if (user === "") {
+    if (user === '') {
       setVote(0);
       setStatus(0);
       setUserStake(new BigNumber(0));
@@ -165,7 +165,7 @@ function Candidate({ user }: { user: string }) {
             approveFor,
             rejectFor,
             totalStake
-          ) === "Approved"
+          ) === 'Approved'
         }
       />
     </>

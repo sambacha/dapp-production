@@ -1,4 +1,4 @@
-import BigNumber from "bignumber.js";
+import BigNumber from 'bignumber.js';
 
 /**
  * Convert 10.999 to 10999000
@@ -51,20 +51,20 @@ export const formatBN = (amount: BigNumber, position: number): string => {
 };
 
 function delineate(bnStr) {
-  const parts = bnStr.split(".");
+  const parts = bnStr.split('.');
   return (
-    parts[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + parts[1]
+    parts[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + parts[1]
   );
 }
 
 function pad(bnStr, position) {
-  if (!bnStr.includes(".")) {
-    bnStr += ".";
+  if (!bnStr.includes('.')) {
+    bnStr += '.';
   }
 
-  const parts = bnStr.split(".");
+  const parts = bnStr.split('.');
   for (let i = 0; i < position - parts[1].length; i++) {
-    bnStr += "0";
+    bnStr += '0';
   }
 
   return bnStr;

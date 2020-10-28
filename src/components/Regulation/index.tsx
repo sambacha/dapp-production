@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Header } from "@aragon/ui";
+import React, { useState, useEffect } from 'react';
+import { Header } from '@aragon/ui';
 
 import {
   getCouponPremium,
@@ -12,14 +12,14 @@ import {
   getTotalDebt,
   getTotalRedeemable,
   getTotalStaged,
-} from "../../utils/infura";
-import { ESD, ESDS, UNI } from "../../constants/tokens";
-import { toTokenUnitsBN } from "../../utils/number";
-import BigNumber from "bignumber.js";
-import RegulationHeader from "./Header";
-import RegulationHistory from "./RegulationHistory";
-import IconHeader from "../common/IconHeader";
-import { getLegacyPoolAddress, getPoolAddress } from "../../utils/pool";
+} from '../../utils/infura';
+import { ESD, ESDS, UNI } from '../../constants/tokens';
+import { toTokenUnitsBN } from '../../utils/number';
+import BigNumber from 'bignumber.js';
+import RegulationHeader from './Header';
+import RegulationHistory from './RegulationHistory';
+import IconHeader from '../common/IconHeader';
+import { getLegacyPoolAddress, getPoolAddress } from '../../utils/pool';
 
 const ONE_COUPON = new BigNumber(10).pow(18);
 

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Box, Button, IconCircleMinus } from "@aragon/ui";
-import BigNumber from "bignumber.js";
-import { removeLiquidity } from "../../utils/web3";
+import React, { useState } from 'react';
+import { Box, Button, IconCircleMinus } from '@aragon/ui';
+import BigNumber from 'bignumber.js';
+import { removeLiquidity } from '../../utils/web3';
 
-import { BalanceBlock, MaxButton, PriceSection } from "../common/index";
-import { toBaseUnitBN } from "../../utils/number";
-import { decreaseWithSlippage } from "../../utils/calculation";
-import { ESD, UNI, USDC } from "../../constants/tokens";
-import BigNumberInput from "../common/BigNumberInput";
+import { BalanceBlock, MaxButton, PriceSection } from '../common/index';
+import { toBaseUnitBN } from '../../utils/number';
+import { decreaseWithSlippage } from '../../utils/calculation';
+import { ESD, UNI, USDC } from '../../constants/tokens';
+import BigNumberInput from '../common/BigNumberInput';
 
 type RemoveLiquidityProps = {
   userBalanceUNI: BigNumber;
@@ -42,15 +42,15 @@ function RemoveLiquidity({
 
   return (
     <Box heading="Remove Liquidity">
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         {/* Pool Token in Hold */}
-        <div style={{ width: "30%" }}>
+        <div style={{ width: '30%' }}>
           <BalanceBlock asset="Pair Token Balance" balance={userBalanceUNI} />
         </div>
         {/* Remove */}
-        <div style={{ width: "70%", paddingTop: "2%" }}>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "35%", marginRight: "5%" }}>
+        <div style={{ width: '70%', paddingTop: '2%' }}>
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '35%', marginRight: '5%' }}>
               <BigNumberInput
                 adornment="UNI-V2"
                 value={withdrawAmountUNI}
@@ -58,7 +58,7 @@ function RemoveLiquidity({
               />
               <MaxButton onClick={() => setWithdrawAmountUNI(userBalanceUNI)} />
             </div>
-            <div style={{ width: "35%", marginRight: "5%" }}>
+            <div style={{ width: '35%', marginRight: '5%' }}>
               <>
                 <PriceSection
                   label="You get "
@@ -72,7 +72,7 @@ function RemoveLiquidity({
                 />
               </>
             </div>
-            <div style={{ width: "30%" }}>
+            <div style={{ width: '30%' }}>
               <Button
                 wide
                 icon={<IconCircleMinus />}

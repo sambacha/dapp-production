@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function HelperText({ label, amt }: { label: string; amt: string }) {
   if (parseFloat(amt) > 0) {

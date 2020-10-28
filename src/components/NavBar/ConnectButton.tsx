@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 import {
   Button,
@@ -7,9 +7,9 @@ import {
   Box,
   IconPower,
   LinkBase,
-} from "@aragon/ui";
+} from '@aragon/ui';
 
-import { connect } from "../../utils/web3";
+import { connect } from '../../utils/web3';
 
 type connectButtonProps = {
   hasWeb3: boolean;
@@ -29,15 +29,15 @@ function ConnectButton({ hasWeb3, user, setUser }: connectButtonProps) {
 
   const disconnectWeb3 = async () => {
     setIsConnected(false);
-    setUser("");
+    setUser('');
   };
 
   return isConnected ? (
     <>
       <div style={{ paddingTop: 5, paddingRight: 5 }}>
         <LinkBase onClick={disconnectWeb3} size="small">
-          {" "}
-          <IconPower />{" "}
+          {' '}
+          <IconPower />{' '}
         </LinkBase>
       </div>
       <Box padding={6}>

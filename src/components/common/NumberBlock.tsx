@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import BigNumber from "bignumber.js";
+import BigNumber from 'bignumber.js';
 
 type NumberBlockProps = {
   title: string;
