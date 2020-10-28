@@ -1,0 +1,40 @@
+# nodejs
+name: nodejs
+
+on: [push, pull_request]
+
+env:
+  # ETHERSCAN_TOKEN:
+  #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # WEB3_INFURA_PROJECT_ID:
+
+  # increasing available memory for node reduces issues with ganache crashing
+  # https://nodejs.org/api/cli.html#cli_max_old_space_size_size_in_megabytes
+  NODE_OPTIONS: --max_old_space_size=4096
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: build
+      run: |
+        npm install 
+        npm run-script build
+    - name: Publish
+      uses: netlify/actions/cli@master
+      with:
+        args: deploy --dir=build --prod
+      env:
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
