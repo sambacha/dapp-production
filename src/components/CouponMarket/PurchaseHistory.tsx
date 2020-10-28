@@ -65,6 +65,7 @@ function PurchaseHistory({
       // @ts-ignore
       entries={
         hideRedeemed
+          // @ts-ignore
           ? epochs.filter((epoch) => !epoch.balance.isZero())
           : epochs
       }
