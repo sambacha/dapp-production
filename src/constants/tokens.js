@@ -13,11 +13,11 @@ export const USDC = {
 export const ESD = {
   addr: "0x36F3FD68E7325a35EB768F1AedaAe9EA0689d723",
   decimals: 18,
-  symbol: "ESD",
+  symbol: "EDI",
 };
 
 export const ESDS = {
   addr: "0x443D2f2755DB5942601fa062Cc248aAA153313D3",
   decimals: 18,
-  symbol: "ESDS",
+  symbol: "EDIx",
 };

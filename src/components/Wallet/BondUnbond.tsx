@@ -1,3 +1,4 @@
+// SPDX: MIT
 import React, { useState } from "react";
 import { Box, Button, IconCirclePlus, IconCircleMinus } from "@aragon/ui";
 import BigNumber from "bignumber.js";
@@ -22,7 +23,7 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
       <div style={{ display: "flex" }}>
         {/* Total bonded */}
         <div style={{ width: "30%" }}>
-          <BalanceBlock asset="Bonded" balance={bonded} suffix={"ESD"} />
+          <BalanceBlock asset="Bonded" balance={bonded} suffix={"EDI"} />
         </div>
         {/* Bond Døllar within DAO */}
         <div style={{ width: "32%", paddingTop: "2%" }}>
@@ -30,7 +31,7 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
             <div style={{ width: "60%" }}>
               <>
                 <BigNumberInput
-                  adornment="ESD"
+                  adornment="EDI"
                   value={bondAmount}
                   setter={setBondAmount}
                   disabled={status === 2}
@@ -66,7 +67,7 @@ function BondUnbond({ staged, bonded, status }: BondUnbondProps) {
             <div style={{ width: "60%" }}>
               <>
                 <BigNumberInput
-                  adornment="ESD"
+                  adornment="EDI"
                   value={unbondAmount}
                   setter={setUnbondAmount}
                   disabled={status === 2}

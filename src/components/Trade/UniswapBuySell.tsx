@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import React, { useState } from "react";
 import { Box, Button, IconCirclePlus, IconCircleMinus } from "@aragon/ui";
 import BigNumber from "bignumber.js";
@@ -60,9 +61,9 @@ function UniswapBuySell({
         {/* total Issued */}
         <div style={{ width: "30%" }}>
           <BalanceBlock
-            asset="Døllar Balance"
+            asset="Freight Trust Network"
             balance={userBalanceESD}
-            suffix={" ESD"}
+            suffix={" EDI"}
           />
         </div>
         {/* Buy Token from Uniswap */}
@@ -71,7 +72,7 @@ function UniswapBuySell({
             <div style={{ width: "60%" }}>
               <>
                 <BigNumberInput
-                  adornment="ESD"
+                  adornment="EDI"
                   value={buyAmount}
                   setter={(value) => {
                     setBuyAmount(value);
@@ -103,7 +104,7 @@ function UniswapBuySell({
             <div style={{ width: "60%" }}>
               <>
                 <BigNumberInput
-                  adornment="ESD"
+                  adornment="EDI"
                   value={sellAmount}
                   setter={(value) => {
                     setSellAmount(value);

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import React, { useState } from "react";
 import { Box, Button, IconCirclePlus, IconCircleMinus } from "@aragon/ui";
 import BigNumber from "bignumber.js";
@@ -35,7 +36,7 @@ function WithdrawDeposit({
             <BalanceBlock
               asset="Staged"
               balance={stagedBalance}
-              suffix={"ESD"}
+              suffix={"EDI"}
             />
           </div>
           {/* Deposit Døllar into DAO */}
@@ -44,7 +45,7 @@ function WithdrawDeposit({
               <div style={{ width: "60%" }}>
                 <>
                   <BigNumberInput
-                    adornment="ESD"
+                    adornment="EDI"
                     value={depositAmount}
                     setter={setDepositAmount}
                     disabled={status === 1}
@@ -83,7 +84,7 @@ function WithdrawDeposit({
               <div style={{ width: "60%" }}>
                 <>
                   <BigNumberInput
-                    adornment="ESD"
+                    adornment="EDI"
                     value={withdrawAmount}
                     setter={setWithdrawAmount}
                     disabled={status === 1}
@@ -123,7 +124,7 @@ function WithdrawDeposit({
             <BalanceBlock
               asset="Staged"
               balance={stagedBalance}
-              suffix={"ESD"}
+              suffix={"EDI"}
             />
           </div>
           <div style={{ width: "40%" }} />

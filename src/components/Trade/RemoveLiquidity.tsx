@@ -68,7 +68,7 @@ function RemoveLiquidity({
                 <PriceSection
                   label="+ "
                   amt={estimatedESDReceived}
-                  symbol=" ESD"
+                  symbol="EDI"
                 />
               </>
             </div>

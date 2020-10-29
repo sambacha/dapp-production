@@ -19,13 +19,13 @@ const TradePageHeader = ({
   return (
     <div style={{ padding: "2%", display: "flex", alignItems: "center" }}>
       <div style={{ width: "25%" }}>
-        <BalanceBlock asset="ESD Price" balance={price} suffix={"USDC"} />
+        <BalanceBlock asset="EDI Price" balance={price} suffix={"USDC"} />
       </div>
       <div style={{ width: "25%" }}>
         <BalanceBlock
-          asset="ESD Liquidity"
+          asset="EDI Liquidity"
           balance={pairBalanceESD}
-          suffix={"ESD"}
+          suffix={"EDI"}
         />
       </div>
       <div style={{ width: "25%" }}>

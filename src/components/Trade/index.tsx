@@ -150,10 +150,10 @@ function UniswapPool({ user }: { user: string }) {
         <div style={{ width: "30%", marginRight: "3%", marginLeft: "2%" }}>
           <MainButton
             title="Info"
-            description="View ESD-USDC pool stats."
+            description="View EDI-USDC pool stats."
             icon={<i className="fas fa-chart-area" />}
             href={
-              "https://uniswap.info/pair/0x88ff79eb2bc5850f27315415da8685282c7610f9"
+              "#"
             }
           />
         </div>
@@ -164,7 +164,7 @@ function UniswapPool({ user }: { user: string }) {
             description="Trade EDI tokens."
             icon={<i className="fas fa-exchange-alt" />}
             href={
-              "https://uniswap.exchange/swap?inputCurrency=0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48&outputCurrency=0x36f3fd68e7325a35eb768f1aedaae9ea0689d723"
+              "#"
             }
           />
         </div>
@@ -175,7 +175,7 @@ function UniswapPool({ user }: { user: string }) {
             description="Supply and redeem liquidity."
             icon={<i className="fas fa-water" />}
             href={
-              "https://uniswap.exchange/add/0x36f3fd68e7325a35eb768f1aedaae9ea0689d723/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+              "#"
             }
           />
         </div>
