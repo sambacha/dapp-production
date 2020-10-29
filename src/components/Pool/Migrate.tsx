@@ -1,3 +1,4 @@
+//
 import React, { useState } from "react";
 import { Box, Button, IconArrowDown, IconCircleMinus } from "@aragon/ui";
 import BigNumber from "bignumber.js";
@@ -89,7 +90,7 @@ function Migrate({
               <BalanceBlock
                 asset="Claimable"
                 balance={claimable}
-                suffix={"ESD"}
+                suffix={"EDI"}
               />
               <Button
                 wide

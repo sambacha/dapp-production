@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 import React, { useState, useEffect } from "react";
 import { Header } from "@aragon/ui";
 import { useParams } from "react-router-dom";

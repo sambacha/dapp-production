@@ -36,14 +36,14 @@ const PoolPageHeader = ({
       <BalanceBlock
         asset="Rewarded"
         balance={accountRewardedESDBalance}
-        suffix={" ESD"}
+        suffix={" EDI"}
       />
     </div>
     <div style={{ width: "20%" }}>
       <BalanceBlock
         asset="Claimable"
         balance={accountClaimableESDBalance}
-        suffix={" ESD"}
+        suffix={" EDI"}
       />
     </div>
     <div style={{ width: "20%" }}>

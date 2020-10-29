@@ -29,21 +29,21 @@ const AccountPageHeader = ({
       <BalanceBlock
         asset="Balance"
         balance={accountESDBalance}
-        suffix={" ESD"}
+        suffix={" EDI"}
       />
     </div>
     <div style={{ width: "20%" }}>
       <BalanceBlock
         asset="Staged"
         balance={accountStagedBalance}
-        suffix={" ESD"}
+        suffix={" EDI"}
       />
     </div>
     <div style={{ width: "20%" }}>
       <BalanceBlock
         asset="Bonded"
         balance={accountBondedBalance}
-        suffix={" ESD"}
+        suffix={" EDI"}
       />
     </div>
     <div style={{ width: "20%" }}>

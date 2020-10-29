@@ -43,7 +43,7 @@ function PurchaseCoupons({
         <div style={{ display: "flex" }}>
           {/* User balance */}
           <div style={{ width: "30%" }}>
-            <BalanceBlock asset={`Balance`} balance={balance} suffix={" ESD"} />
+            <BalanceBlock asset={`Balance`} balance={balance} suffix={" EDI"} />
           </div>
           <div style={{ width: "38%" }} />
           {/* Purchase coupons */}
@@ -52,7 +52,7 @@ function PurchaseCoupons({
               <div style={{ width: "60%" }}>
                 <>
                   <BigNumberInput
-                    adornment="ESD"
+                    adornment="EDI"
                     value={purchaseAmount}
                     setter={(value) => {
                       setPurchaseAmount(value);
@@ -98,7 +98,7 @@ function PurchaseCoupons({
         <div style={{ display: "flex" }}>
           {/* User balance */}
           <div style={{ width: "30%" }}>
-            <BalanceBlock asset={`Døllar Balance`} balance={balance} />
+            <BalanceBlock asset={`Freight Trust Network`} balance={balance} />
           </div>
           <div style={{ width: "40%" }} />
           {/* Approve DAO to spend Døllar */}
