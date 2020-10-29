@@ -34,23 +34,23 @@ function Footer({ theme }: { theme: string }) {
             <div style={{ width: "50%", textAlign: "left" }}>
               <FooterLink
                 icon={<i className="fab fa-github" />}
-                href={"https://www.github.com/freight-trust/as2network"}
+                href={"https://www.github.com/freight-trust"}
               />
               <FooterLink
                 icon={<i className="fab fa-twitter" />}
-                href={"https://www.twitter.com/freight-trust"}
+                href={"https://www.twitter.com/freighttrustnet"}
               />
               <FooterLink
                 icon={<i className="fab fa-medium" />}
-                href={"https://www.medium.com/@freight-trust"}
+                href={"https://www.medium.com/freighttrust"}
               />
               <FooterLink
                 icon={<i className="fab fa-telegram" />}
-                href={"https://www.t.me/emptysetas2network"}
+                href={"https://www.t.me/freighttrust"}
               />
               <FooterLink
-                icon={<i className="fab fa-discord" />}
-                href={"https://discord.gg/vPws9Vp"}
+                icon={<i className="fab fa-discourse" />}
+                href={"https://discourse.freighttrust.com"}
               />
             </div>
             <div
@@ -64,9 +64,9 @@ function Footer({ theme }: { theme: string }) {
             >
               made with{" "}
               <span role="img" aria-labelledby="heartbreak">
-                💔️
+               Powered
               </span>{" "}
-              by the &#123;ess&#125;.
+              by the Ξ
             </div>
           </div>
         </div>
